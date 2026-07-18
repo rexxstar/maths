@@ -1,0 +1,1786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MATHS</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,450;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#132821;
+    --ink-2:#1c3a30;
+    --paper:#FAF6EC;
+    --paper-line:#E3DAC3;
+    --paper-line-strong:#cfc4a4;
+    --gold:#D8A93B;
+    --gold-deep:#a97f22;
+    --mint:#3E8E7E;
+    --mint-deep:#2b6459;
+    --rose:#c06255;
+    --ink-text:#1c2b26;
+    --paper-text:#efe9d8;
+    --radius:10px;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--paper);
+    color:var(--ink-text);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--gold); color:var(--ink); }
+
+  a{ color:inherit; }
+
+  /* graph-paper texture */
+  .paper-bg{
+    background-image:
+      linear-gradient(var(--paper-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--paper-line) 1px, transparent 1px);
+    background-size: 28px 28px;
+    background-color:var(--paper);
+  }
+
+  .app{
+    display:flex;
+    min-height:100vh;
+  }
+
+  /* ---------- Sidebar ---------- */
+  .sidebar{
+    width:300px;
+    flex-shrink:0;
+    background:var(--ink);
+    color:var(--paper-text);
+    padding:26px 18px 40px;
+    position:sticky;
+    top:0;
+    height:100vh;
+    overflow-y:auto;
+  }
+  .brand{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+    padding:0 6px 18px;
+    border-bottom:1px solid rgba(239,233,216,0.15);
+    margin-bottom:16px;
+  }
+  .brand-mark{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:1.5rem;
+    color:var(--gold);
+  }
+  .brand-sub{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:rgba(239,233,216,0.55);
+  }
+
+  .nav-subject{ margin-bottom:6px; }
+  .nav-subject > summary{
+    list-style:none;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 8px;
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1rem;
+    border-radius:8px;
+  }
+  .nav-subject > summary::-webkit-details-marker{ display:none; }
+  .nav-subject > summary .chev{
+    transition:transform .2s ease;
+    opacity:0.6;
+    font-size:0.75rem;
+  }
+  .nav-subject[open] > summary .chev{ transform:rotate(90deg); }
+  .nav-subject.fm > summary{ color:var(--mint); }
+  .nav-subject:not(.fm) > summary{ color:var(--gold); }
+
+  .nav-group{ margin:2px 0 10px 4px; }
+  .nav-group-title{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.66rem;
+    letter-spacing:0.09em;
+    text-transform:uppercase;
+    color:rgba(239,233,216,0.4);
+    padding:10px 8px 4px;
+  }
+  .nav-item{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    width:100%;
+    text-align:left;
+    background:none;
+    border:none;
+    color:rgba(239,233,216,0.82);
+    font-family:'Inter',sans-serif;
+    font-size:0.87rem;
+    padding:7px 10px;
+    border-radius:7px;
+    cursor:pointer;
+    line-height:1.3;
+  }
+  .nav-item:hover{ background:rgba(239,233,216,0.07); }
+  .nav-item.active{
+    background:rgba(216,169,59,0.16);
+    color:var(--paper-text);
+    font-weight:600;
+  }
+  .nav-item.fm.active{ background:rgba(62,142,126,0.22); }
+  .nav-dot{
+    width:6px; height:6px; border-radius:50%;
+    background:rgba(239,233,216,0.25);
+    flex-shrink:0;
+  }
+  .nav-item.visited .nav-dot{ background:var(--gold); }
+  .nav-item.fm.visited .nav-dot{ background:var(--mint); }
+  .nav-item .soon-tag{
+    margin-left:auto;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.6rem;
+    color:rgba(239,233,216,0.35);
+    letter-spacing:0.04em;
+  }
+
+  /* ---------- Main ---------- */
+  .main{
+    flex:1;
+    min-width:0;
+  }
+  .content{
+    max-width:820px;
+    margin:0 auto;
+    padding:56px 40px 120px;
+  }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--gold-deep);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom:10px;
+  }
+  .eyebrow.fm{ color:var(--mint-deep); }
+  .eyebrow .sep{ opacity:0.4; }
+
+  h1.chapter-title{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:2.6rem;
+    line-height:1.08;
+    margin:0 0 6px;
+    color:var(--ink);
+  }
+  .chapter-dek{
+    font-size:1.05rem;
+    color:#4a5650;
+    max-width:60ch;
+    margin:0 0 28px;
+  }
+
+  .chapter-motif{
+    float:right;
+    margin:-8px 0 20px 20px;
+  }
+
+  h2.section-title{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.35rem;
+    margin:40px 0 12px;
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    color:var(--ink);
+  }
+  h2.section-title .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.85rem;
+    color:var(--gold-deep);
+    font-weight:500;
+  }
+  .fm h2.section-title .num{ color:var(--mint-deep); }
+
+  p{ line-height:1.68; margin:0 0 14px; font-size:0.98rem; }
+
+  .katex-display{ margin:1em 0 1.3em; overflow-x:auto; overflow-y:hidden; }
+
+  /* worked example / chalkboard box */
+  .chalk{
+    background:var(--ink);
+    color:var(--paper-text);
+    border-radius:var(--radius);
+    padding:22px 24px;
+    margin:20px 0 28px;
+    position:relative;
+    border:1px solid rgba(239,233,216,0.08);
+  }
+  .chalk::before{
+    content:"WORKED EXAMPLE";
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.64rem;
+    letter-spacing:0.12em;
+    color:var(--gold);
+    display:block;
+    margin-bottom:10px;
+  }
+  .fm .chalk::before{ color:var(--mint); }
+  .chalk p{ color:rgba(239,233,216,0.92); margin-bottom:10px;}
+  .chalk .katex{ color:rgba(239,233,216,0.97); }
+  .chalk-step{
+    display:flex;
+    gap:10px;
+    padding:4px 0;
+    align-items:flex-start;
+  }
+  .chalk-step .arrow{ color:var(--gold); font-family:'IBM Plex Mono',monospace; flex-shrink:0; margin-top:2px;}
+  .fm .chalk-step .arrow{ color:var(--mint); }
+
+  .callout{
+    border-left:3px solid var(--gold-deep);
+    background:rgba(216,169,59,0.08);
+    padding:12px 16px;
+    border-radius:0 8px 8px 0;
+    margin:18px 0;
+    font-size:0.92rem;
+  }
+  .fm .callout{ border-left-color:var(--mint-deep); background:rgba(62,142,126,0.08); }
+
+  /* practice section */
+  .practice-block{
+    margin-top:56px;
+    padding-top:28px;
+    border-top:2px dashed var(--paper-line-strong);
+  }
+  .practice-heading{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:1.55rem;
+    margin:0 0 6px;
+  }
+  .practice-sub{ color:#5a655f; font-size:0.9rem; margin-bottom:26px;}
+
+  .q-card{
+    background:#fff;
+    border:1px solid var(--paper-line-strong);
+    border-radius:var(--radius);
+    padding:20px 22px;
+    margin-bottom:18px;
+  }
+  .q-head{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:10px;
+  }
+  .q-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600;
+    font-size:0.82rem;
+    background:var(--gold);
+    color:var(--ink);
+    width:24px;height:24px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .fm .q-num{ background:var(--mint); color:#fff; }
+  .q-text{ font-size:0.98rem; font-weight:500; }
+
+  .reveal-btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.76rem;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    background:var(--ink);
+    color:var(--paper-text);
+    border:none;
+    padding:9px 16px;
+    border-radius:7px;
+    cursor:pointer;
+    margin-top:6px;
+  }
+  .reveal-btn:hover{ background:var(--ink-2); }
+  .reveal-btn.open{ background:transparent; color:#8a8a8a; border:1px solid var(--paper-line-strong); }
+
+  .answer-wrap{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .35s ease;
+  }
+  .answer-wrap.open{ max-height:1200px; }
+  .answer-inner{
+    margin-top:14px;
+    padding:16px 18px;
+    background:var(--paper);
+    border-radius:8px;
+    border:1px dashed var(--paper-line-strong);
+  }
+  .answer-inner .final{
+    font-weight:600;
+    margin-top:8px;
+    color:var(--mint-deep);
+  }
+  .fm .answer-inner .final{ color:var(--mint-deep); }
+  :not(.fm) .answer-inner .final{ color:var(--gold-deep); }
+
+  /* soon placeholder */
+  .soon-wrap{
+    padding:60px 0;
+  }
+  .soon-badge{
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.7rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    background:rgba(216,169,59,0.15);
+    color:var(--gold-deep);
+    padding:5px 10px;
+    border-radius:6px;
+    margin-bottom:16px;
+  }
+  .fm .soon-badge{ background:rgba(62,142,126,0.15); color:var(--mint-deep); }
+
+  /* landing */
+  .landing-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    margin-top:34px;
+  }
+  .landing-card{
+    border:1px solid var(--paper-line-strong);
+    border-radius:12px;
+    padding:22px;
+    background:#fff;
+    cursor:pointer;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .landing-card:hover{ transform:translateY(-2px); box-shadow:0 8px 22px rgba(19,40,33,0.08); }
+  .landing-card h3{ font-family:'Fraunces',serif; margin:0 0 6px; font-size:1.15rem;}
+  .landing-card p{ font-size:0.87rem; color:#5a655f; margin:0;}
+  .landing-card .tag{ font-family:'IBM Plex Mono',monospace; font-size:0.68rem; color:var(--gold-deep); text-transform:uppercase; letter-spacing:0.06em;}
+  .landing-card.fm .tag{ color:var(--mint-deep); }
+
+  footer.progress-bar{
+    position:sticky;
+    bottom:0;
+    background:rgba(250,246,236,0.92);
+    backdrop-filter:blur(6px);
+    border-top:1px solid var(--paper-line-strong);
+    padding:10px 40px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:#5a655f;
+    display:flex;
+    justify-content:space-between;
+    max-width:820px;
+    margin:0 auto;
+  }
+
+  @media (max-width: 860px){
+    .sidebar{ position:relative; height:auto; width:100%; }
+    .app{ flex-direction:column; }
+    .content{ padding:32px 20px 90px; }
+    .landing-grid{ grid-template-columns:1fr; }
+    h1.chapter-title{ font-size:2rem; }
+    .chapter-motif{ display:none; }
+  }
+
+  :focus-visible{ outline:2px solid var(--gold-deep); outline-offset:2px; }
+</style>
+</head>
+<body class="paper-bg">
+
+<div class="app">
+  <nav class="sidebar" id="sidebar" aria-label="Course navigation">
+    <div class="brand">
+      <span class="brand-mark">Proof &amp; Paper</span>
+    </div>
+    <div class="brand-sub" style="margin-bottom:18px;">A-Level Maths, walked through</div>
+    <div id="nav-root"></div>
+  </nav>
+
+  <main class="main">
+    <div class="content" id="content"></div>
+    <footer class="progress-bar">
+      <span id="progress-text">0 of 0 topics visited</span>
+      <span>Proof &amp; Paper</span>
+    </footer>
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+
+<script>
+/* ============================================================
+   COURSE DATA
+   ============================================================ */
+const COURSE = {
+  maths: {
+    label: "A-Level Mathematics",
+    key: "maths",
+    groups: [
+      {
+        title: "Pure Mathematics",
+        topics: [
+          {id:"alg-expr", name:"Algebraic Expressions", status:"full", blurb:"Indices, surds, expanding & factorising."},
+          {id:"quadratics", name:"Quadratics", status:"full", blurb:"Factorising, completing the square, the formula, the discriminant, sketching."},
+          {id:"eq-ineq", name:"Equations & Inequalities", status:"full", blurb:"Simultaneous equations and inequalities, linear and quadratic."},
+          {id:"graphs-trans", name:"Graphs & Transformations", status:"full", blurb:"Sketching curves and transforming y = f(x)."},
+          {id:"straight-lines", name:"Straight Line Graphs", status:"full", blurb:"Gradients, equations of lines, parallel & perpendicular."},
+          {id:"circles", name:"Circles", status:"full", blurb:"Equation of a circle, tangents and chords."},
+          {id:"trig", name:"Trigonometry", status:"full", blurb:"Sine and cosine rules, identities, trig equations."},
+          {id:"exp-log", name:"Exponentials & Logarithms", status:"full", blurb:"Laws of logs, exponential growth and decay."},
+          {id:"differentiation", name:"Differentiation", status:"full", blurb:"Gradients, chain/product/quotient rules, stationary points."},
+          {id:"integration", name:"Integration", status:"full", blurb:"Antiderivatives, definite integrals, area under a curve."},
+          {id:"vectors", name:"Vectors", status:"full", blurb:"2D and 3D vectors, magnitude and direction."},
+          {id:"sequences", name:"Sequences & Series", status:"full", blurb:"Arithmetic and geometric sequences, sigma notation."},
+          {id:"binomial", name:"Binomial Expansion", status:"full", blurb:"Pascal's triangle, nCr, expanding (a+b)ⁿ."},
+        ]
+      },
+      {
+        title: "Statistics",
+        topics: [
+          {id:"data-pres", name:"Data Presentation", status:"soon", blurb:"Histograms, box plots, measures of spread."},
+          {id:"probability", name:"Probability", status:"soon", blurb:"Venn diagrams, tree diagrams, conditional probability."},
+          {id:"distributions", name:"Statistical Distributions", status:"soon", blurb:"Binomial distribution and its uses."},
+          {id:"hyp-testing", name:"Hypothesis Testing", status:"soon", blurb:"Testing a claim about a population parameter."},
+        ]
+      },
+      {
+        title: "Mechanics",
+        topics: [
+          {id:"kinematics", name:"Kinematics", status:"soon", blurb:"suvat equations, motion graphs."},
+          {id:"forces", name:"Forces & Newton's Laws", status:"soon", blurb:"Resolving forces, F = ma, connected particles."},
+          {id:"moments", name:"Moments", status:"soon", blurb:"Turning effects of forces, equilibrium of rigid bodies."},
+        ]
+      }
+    ]
+  },
+  further: {
+    label: "Further Mathematics",
+    key: "further",
+    groups: [
+      {
+        title: "Further Pure",
+        topics: [
+          {id:"complex", name:"Complex Numbers", status:"full", blurb:"i, arithmetic, conjugates, Argand diagrams, modulus-argument form."},
+          {id:"matrices", name:"Matrices", status:"soon", blurb:"Matrix arithmetic, determinants, transformations."},
+          {id:"further-alg", name:"Further Algebra & Functions", status:"soon", blurb:"Roots of polynomials, partial fractions."},
+          {id:"further-calc", name:"Further Calculus", status:"soon", blurb:"Maclaurin series, further differentiation & integration."},
+          {id:"polar", name:"Polar Coordinates", status:"soon", blurb:"Curves defined by r = f(θ)."},
+          {id:"hyperbolic", name:"Hyperbolic Functions", status:"soon", blurb:"sinh, cosh, tanh and their identities."},
+          {id:"diff-eq", name:"Differential Equations", status:"soon", blurb:"First and second order differential equations."},
+        ]
+      },
+      {
+        title: "Further Statistics",
+        topics: [
+          {id:"discrete-prob", name:"Discrete Probability Distributions", status:"soon", blurb:"Expectation and variance of discrete random variables."},
+          {id:"poisson", name:"Poisson & Binomial", status:"soon", blurb:"The Poisson distribution and its applications."},
+        ]
+      },
+      {
+        title: "Further Mechanics",
+        topics: [
+          {id:"momentum", name:"Momentum & Impulse", status:"soon", blurb:"Conservation of momentum, collisions."},
+          {id:"circular", name:"Circular Motion", status:"soon", blurb:"Motion in a horizontal and vertical circle."},
+        ]
+      }
+    ]
+  }
+};
+
+const visited = new Set();
+let totalTopics = 0;
+Object.values(COURSE).forEach(s => s.groups.forEach(g => totalTopics += g.topics.length));
+
+/* ============================================================
+   CHAPTER CONTENT
+   ============================================================ */
+
+const CHAPTERS = {
+
+  quadratics: {
+    subjectKey:"maths",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="10" y1="75" x2="115" y2="75" stroke="#cfc4a4" stroke-width="1"/>
+      <line x1="20" y1="10" x2="20" y2="85" stroke="#cfc4a4" stroke-width="1"/>
+      <path d="M12 78 C 40 8, 80 8, 108 78" stroke="#D8A93B" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <circle cx="35" cy="45" r="2.5" fill="#132821"/>
+      <circle cx="85" cy="45" r="2.5" fill="#132821"/>
+    </svg>`,
+    title:"Quadratics",
+    dek:"Every method for cracking ax\\,^2 + bx + c = 0 — and what each one tells you about the graph.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> What is a quadratic?</h2>
+      <p>A quadratic function has the form \\(f(x) = ax^2 + bx + c\\), where \\(a \\neq 0\\). Its graph is always a <strong>parabola</strong>: a symmetric U-shape that opens upward if \\(a>0\\) and downward if \\(a<0\\).</p>
+      <p>Solving a quadratic <em>equation</em> \\(ax^2+bx+c=0\\) means finding where that parabola crosses the x-axis. There are three standard methods, and a graph-sketching toolkit that ties them all together.</p>
+
+      <h2 class="section-title"><span class="num">02</span> Solving by factorising</h2>
+      <p>If you can write \\(ax^2+bx+c\\) as a product of two brackets, each bracket can be set to zero individually. For \\(x^2+bx+c\\), look for two numbers that multiply to \\(c\\) and add to \\(b\\).</p>
+      <div class="chalk">
+        <p>Solve \\(x^2 + 5x + 6 = 0\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>Two numbers that multiply to 6 and add to 5: they are 2 and 3.</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\((x+2)(x+3) = 0\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>So \\(x = -2\\) or \\(x = -3\\).</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">03</span> Completing the square</h2>
+      <p>Rewriting \\(x^2+bx+c\\) as \\(\\left(x+\\tfrac{b}{2}\\right)^2 - \\left(\\tfrac{b}{2}\\right)^2 + c\\) works even when the expression won't factorise nicely, and instantly reveals the turning point of the graph.</p>
+      <div class="chalk">
+        <p>Solve \\(x^2 + 6x + 5 = 0\\) by completing the square.</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(x^2+6x+5 = (x+3)^2 - 9 + 5 = (x+3)^2 - 4\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>Set \\((x+3)^2 - 4 = 0 \\Rightarrow (x+3)^2 = 4\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(x+3 = \\pm 2 \\Rightarrow x = -1\\) or \\(x=-5\\)</span></div>
+      </div>
+      <div class="callout">The completed-square form \\((x+3)^2-4\\) also tells you the minimum point of the graph is at \\((-3,-4)\\) — no extra work needed.</div>
+
+      <h2 class="section-title"><span class="num">04</span> The quadratic formula</h2>
+      <p>For any \\(ax^2+bx+c=0\\), the solutions are given by:</p>
+      <p>$$x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}$$</p>
+      <div class="chalk">
+        <p>Solve \\(2x^2 - 3x - 5 = 0\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(a=2,\\ b=-3,\\ c=-5\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(b^2-4ac = 9 - 4(2)(-5) = 9+40 = 49\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(x = \\dfrac{3 \\pm 7}{4}\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(x = 2.5\\) or \\(x = -1\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">05</span> The discriminant</h2>
+      <p>The expression under the square root, \\(b^2-4ac\\), is called the <strong>discriminant</strong>. Its sign tells you how many real roots the equation has, without solving it fully:</p>
+      <div class="callout">
+        \\(b^2-4ac > 0\\): two distinct real roots &nbsp;•&nbsp;
+        \\(b^2-4ac = 0\\): one repeated root &nbsp;•&nbsp;
+        \\(b^2-4ac < 0\\): no real roots (the parabola never touches the x-axis)
+      </div>
+
+      <h2 class="section-title"><span class="num">06</span> Sketching the graph</h2>
+      <p>To sketch \\(y=ax^2+bx+c\\) you generally need four things: the direction it opens (sign of \\(a\\)), the y-intercept (\\(x=0 \\Rightarrow y=c\\)), the roots (from factorising or the formula), and the turning point (from completing the square).</p>
+    `,
+    practice:[
+      {
+        q:"Solve \\(x^2 - 7x + 12 = 0\\) by factorising.",
+        steps:[
+          "Find two numbers that multiply to 12 and add to −7: these are −3 and −4.",
+          "So \\((x-3)(x-4) = 0\\)."
+        ],
+        final:"x = 3 or x = 4"
+      },
+      {
+        q:"Write \\(x^2 + 8x + 3\\) in completed-square form, and state its minimum value.",
+        steps:[
+          "\\(x^2+8x+3 = (x+4)^2 - 16 + 3 = (x+4)^2 - 13\\)",
+          "A squared term is never negative, so the smallest possible value of \\((x+4)^2\\) is 0, giving a minimum of −13 when \\(x=-4\\)."
+        ],
+        final:"(x+4)² − 13, minimum value −13 at x = −4"
+      },
+      {
+        q:"Solve \\(3x^2 + 5x - 2 = 0\\) using the quadratic formula. Give exact answers.",
+        steps:[
+          "\\(a=3,\\ b=5,\\ c=-2\\)",
+          "\\(b^2-4ac = 25 - 4(3)(-2) = 25+24 = 49\\)",
+          "\\(x = \\dfrac{-5 \\pm 7}{6}\\)"
+        ],
+        final:"x = 1/3 or x = −2"
+      },
+      {
+        q:"Find the value(s) of k for which \\(x^2 + kx + 9 = 0\\) has equal roots.",
+        steps:[
+          "Equal roots means the discriminant is zero: \\(k^2 - 4(1)(9) = 0\\)",
+          "\\(k^2 = 36\\)"
+        ],
+        final:"k = 6 or k = −6"
+      },
+    ]
+  },
+
+  complex: {
+    subjectKey:"further",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="10" y1="45" x2="115" y2="45" stroke="#cfc4a4" stroke-width="1"/>
+      <line x1="60" y1="8" x2="60" y2="82" stroke="#cfc4a4" stroke-width="1"/>
+      <circle cx="88" cy="25" r="3" fill="#3E8E7E"/>
+      <line x1="60" y1="45" x2="88" y2="25" stroke="#3E8E7E" stroke-width="1.5" stroke-dasharray="3 2"/>
+      <circle cx="40" cy="65" r="3" fill="#132821"/>
+      <line x1="60" y1="45" x2="40" y2="65" stroke="#132821" stroke-width="1.5" stroke-dasharray="3 2"/>
+    </svg>`,
+    title:"Complex Numbers",
+    dek:"Extending the number system beyond the real line — arithmetic, conjugates, and the Argand diagram.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> Why we need i</h2>
+      <p>The equation \\(x^2+1=0\\) has no real solution — no real number squares to \\(-1\\). To fix this, we define a new number:</p>
+      <p>$$i = \\sqrt{-1}, \\qquad i^2 = -1$$</p>
+      <p>A <strong>complex number</strong> has the form \\(z = a + bi\\), where \\(a\\) is the <em>real part</em> and \\(b\\) is the <em>imaginary part</em>. Real numbers are the special case \\(b=0\\).</p>
+
+      <h2 class="section-title"><span class="num">02</span> Arithmetic with complex numbers</h2>
+      <p>Adding and subtracting complex numbers just means combining the real and imaginary parts separately. Multiplying uses normal expansion of brackets, with the rule \\(i^2=-1\\) applied whenever it appears.</p>
+      <div class="chalk">
+        <p>Multiply \\((2+3i)(1-4i)\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(2(1) + 2(-4i) + 3i(1) + 3i(-4i)\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(= 2 - 8i + 3i - 12i^2\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(= 2 - 5i + 12\\) &nbsp; (since \\(-12i^2 = +12\\))</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(= 14 - 5i\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">03</span> Conjugates and division</h2>
+      <p>The <strong>complex conjugate</strong> of \\(z=a+bi\\) is \\(\\bar z = a-bi\\). A key property: \\(z\\bar z = a^2+b^2\\) is always real. This is the trick used to divide complex numbers — multiply top and bottom by the conjugate of the denominator.</p>
+      <div class="chalk">
+        <p>Simplify \\(\\dfrac{3+2i}{1-i}\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>Multiply top and bottom by \\(1+i\\), the conjugate of \\(1-i\\).</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(\\dfrac{(3+2i)(1+i)}{(1-i)(1+i)} = \\dfrac{3+3i+2i+2i^2}{1^2+1^2}\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(= \\dfrac{3+5i-2}{2} = \\dfrac{1+5i}{2}\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">04</span> The Argand diagram</h2>
+      <p>Because a complex number has two components, it can be plotted as a point: \\(a+bi\\) corresponds to the point \\((a,b)\\) on a set of axes called an <strong>Argand diagram</strong>, with a real axis and an imaginary axis.</p>
+
+      <h2 class="section-title"><span class="num">05</span> Modulus and argument</h2>
+      <p>The <strong>modulus</strong> \\(|z|\\) is the distance from the origin to the point \\(a+bi\\), and the <strong>argument</strong> \\(\\arg(z)\\) is the angle that line makes with the positive real axis.</p>
+      <p>$$|z| = \\sqrt{a^2+b^2}$$</p>
+      <div class="callout">Watch the quadrant when finding the argument: \\(\\arctan(b/a)\\) alone only gives the correct angle in the first and fourth quadrants. In the second and third quadrants you need to add or subtract 180°.</div>
+
+      <h2 class="section-title"><span class="num">06</span> Complex roots of a quadratic</h2>
+      <p>When \\(b^2-4ac < 0\\) in the quadratic formula, the square root is of a negative number — and now that's fine. The two roots come out as a conjugate pair.</p>
+      <div class="chalk">
+        <p>Solve \\(x^2 - 2x + 5 = 0\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(b^2-4ac = 4 - 20 = -16\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(x = \\dfrac{2 \\pm \\sqrt{-16}}{2} = \\dfrac{2 \\pm 4i}{2}\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(x = 1 + 2i\\) or \\(x = 1 - 2i\\)</span></div>
+      </div>
+    `,
+    practice:[
+      {
+        q:"Find \\((4+3i)+(2-5i)\\) and \\((4+3i)-(2-5i)\\).",
+        steps:[
+          "Sum: add real parts and imaginary parts separately: \\((4+2) + (3-5)i\\)",
+          "Difference: \\((4-2) + (3-(-5))i\\)"
+        ],
+        final:"Sum = 6 − 2i, Difference = 2 + 8i"
+      },
+      {
+        q:"Multiply \\((1+2i)(3-i)\\).",
+        steps:[
+          "\\(1(3) + 1(-i) + 2i(3) + 2i(-i)\\)",
+          "\\(= 3 - i + 6i - 2i^2 = 3 + 5i + 2\\)"
+        ],
+        final:"5 + 5i"
+      },
+      {
+        q:"Solve \\(x^2 - 4x + 13 = 0\\).",
+        steps:[
+          "\\(b^2-4ac = 16 - 52 = -36\\)",
+          "\\(x = \\dfrac{4 \\pm \\sqrt{-36}}{2} = \\dfrac{4 \\pm 6i}{2}\\)"
+        ],
+        final:"x = 2 + 3i or x = 2 − 3i"
+      },
+      {
+        q:"Find the modulus and argument of \\(z = -1 + \\sqrt3\\,i\\).",
+        steps:[
+          "\\(|z| = \\sqrt{(-1)^2 + (\\sqrt3)^2} = \\sqrt{1+3} = 2\\)",
+          "Reference angle: \\(\\arctan\\!\\left(\\dfrac{\\sqrt3}{1}\\right) = 60°\\)",
+          "The point is in the second quadrant (negative real, positive imaginary), so \\(\\arg(z) = 180° - 60° = 120°\\)"
+        ],
+        final:"|z| = 2, arg(z) = 120° (2π/3 radians)"
+      },
+    ]
+  },
+
+  "alg-expr": {
+    subjectKey:"maths",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <text x="14" y="55" font-family="IBM Plex Mono" font-size="30" fill="#132821">x</text>
+      <text x="34" y="38" font-family="IBM Plex Mono" font-size="16" fill="#D8A93B">3</text>
+      <path d="M62 60 L70 30 L78 60" stroke="#132821" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      <line x1="78" y1="60" x2="106" y2="60" stroke="#132821" stroke-width="2"/>
+    </svg>`,
+    title:"Algebraic Expressions",
+    dek:"The toolkit underneath everything else: indices, surds, expanding and factorising.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> Laws of indices</h2>
+      <p>Indices (powers) follow a small set of rules that let you simplify expressions without a calculator:</p>
+      <p>$$a^m \\times a^n = a^{m+n} \\qquad \\dfrac{a^m}{a^n} = a^{m-n} \\qquad (a^m)^n = a^{mn}$$</p>
+      <p>Two extra ones are easy to forget: \\(a^0 = 1\\) for any \\(a \\neq 0\\), and negative or fractional powers mean reciprocals and roots:</p>
+      <p>$$a^{-n} = \\frac{1}{a^n} \\qquad a^{\\frac{1}{n}} = \\sqrt[n]{a} \\qquad a^{\\frac{m}{n}} = \\left(\\sqrt[n]{a}\\right)^m$$</p>
+      <div class="chalk">
+        <p>Simplify \\(\\dfrac{x^5 \\cdot x^{-2}}{x^{4}}\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>Combine the top first: \\(x^5 \\cdot x^{-2} = x^{5-2} = x^3\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>Then divide: \\(x^3 \\div x^4 = x^{3-4} = x^{-1}\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(= \\dfrac{1}{x}\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">02</span> Surds</h2>
+      <p>A surd is a root left in exact form, like \\(\\sqrt2\\) or \\(\\sqrt{12}\\), rather than as a decimal. Two rules do almost all the work:</p>
+      <p>$$\\sqrt{ab} = \\sqrt a \\times \\sqrt b \\qquad \\sqrt{\\frac{a}{b}} = \\frac{\\sqrt a}{\\sqrt b}$$</p>
+      <p>Simplifying a surd means pulling out the largest square-number factor. <strong>Rationalising the denominator</strong> means rewriting a fraction so there's no surd left on the bottom, usually by multiplying top and bottom by a well-chosen surd (or conjugate).</p>
+      <div class="chalk">
+        <p>Simplify \\(\\sqrt{50} - \\sqrt{18}\\), then rationalise \\(\\dfrac{5}{\\sqrt3 - 1}\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(\\sqrt{50} = \\sqrt{25 \\times 2} = 5\\sqrt2\\), and \\(\\sqrt{18} = \\sqrt{9\\times2} = 3\\sqrt2\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>So \\(\\sqrt{50}-\\sqrt{18} = 5\\sqrt2 - 3\\sqrt2 = 2\\sqrt2\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>For the fraction, multiply top and bottom by \\((\\sqrt3+1)\\): \\(\\dfrac{5(\\sqrt3+1)}{(\\sqrt3-1)(\\sqrt3+1)} = \\dfrac{5(\\sqrt3+1)}{3-1} = \\dfrac{5(\\sqrt3+1)}{2}\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">03</span> Expanding brackets</h2>
+      <p>Expanding two brackets means multiplying every term in the first by every term in the second — the "FOIL" pattern for two brackets generalises to any number of terms.</p>
+      <div class="callout">For three brackets, expand two of them first, then multiply the result by the third bracket term by term. There's no shortcut worth memorising — just be systematic.</div>
+
+      <h2 class="section-title"><span class="num">04</span> Factorising</h2>
+      <p>Factorising is expanding in reverse. The three patterns to recognise on sight:</p>
+      <div class="callout">
+        <strong>Common factor:</strong> \\(6x^2+9x = 3x(2x+3)\\) &nbsp;•&nbsp;
+        <strong>Difference of two squares:</strong> \\(a^2-b^2=(a-b)(a+b)\\) &nbsp;•&nbsp;
+        <strong>Quadratic factorising:</strong> covered fully in the Quadratics chapter.
+      </div>
+    `,
+    practice:[
+      {
+        q:"Simplify \\(\\dfrac{a^7 \\cdot a^{-2}}{a^{3}}\\).",
+        steps:[
+          "\\(a^7 \\cdot a^{-2} = a^{5}\\)",
+          "\\(a^{5} \\div a^{3} = a^{5-3}\\)"
+        ],
+        final:"a²"
+      },
+      {
+        q:"Simplify \\(\\sqrt{50} - \\sqrt{18}\\).",
+        steps:[
+          "\\(\\sqrt{50} = \\sqrt{25\\times2} = 5\\sqrt2\\)",
+          "\\(\\sqrt{18} = \\sqrt{9\\times2} = 3\\sqrt2\\)",
+          "\\(5\\sqrt2 - 3\\sqrt2 = 2\\sqrt2\\)"
+        ],
+        final:"2√2"
+      },
+      {
+        q:"Rationalise the denominator of \\(\\dfrac{5}{\\sqrt3 - 1}\\).",
+        steps:[
+          "Multiply top and bottom by the conjugate, \\((\\sqrt3+1)\\)",
+          "\\(\\dfrac{5(\\sqrt3+1)}{(\\sqrt3-1)(\\sqrt3+1)} = \\dfrac{5(\\sqrt3+1)}{3-1}\\)"
+        ],
+        final:"5(√3 + 1) / 2"
+      },
+      {
+        q:"Fully factorise \\(9x^2 - 25\\).",
+        steps:[
+          "This is a difference of two squares: \\(9x^2 = (3x)^2\\) and \\(25=5^2\\)",
+          "\\(a^2-b^2=(a-b)(a+b)\\) with \\(a=3x,\\ b=5\\)"
+        ],
+        final:"(3x − 5)(3x + 5)"
+      },
+    ]
+  },
+
+  "straight-lines": {
+    subjectKey:"maths",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="10" y1="80" x2="115" y2="80" stroke="#cfc4a4" stroke-width="1"/>
+      <line x1="18" y1="8" x2="18" y2="85" stroke="#cfc4a4" stroke-width="1"/>
+      <line x1="20" y1="75" x2="105" y2="18" stroke="#D8A93B" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="20" cy="75" r="2.5" fill="#132821"/>
+      <circle cx="105" cy="18" r="2.5" fill="#132821"/>
+    </svg>`,
+    title:"Straight Line Graphs",
+    dek:"Gradients, equations of lines, and how parallel and perpendicular lines relate.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> Gradient</h2>
+      <p>The gradient of a line measures how steep it is — the change in \\(y\\) for every unit change in \\(x\\). Given two points \\((x_1,y_1)\\) and \\((x_2,y_2)\\):</p>
+      <p>$$m = \\frac{y_2 - y_1}{x_2 - x_1}$$</p>
+
+      <h2 class="section-title"><span class="num">02</span> Equation of a line</h2>
+      <p>The most common form is \\(y = mx + c\\), where \\(m\\) is the gradient and \\(c\\) is the y-intercept. If you know the gradient and one point \\((x_1,y_1)\\) but not \\(c\\), it's often quicker to use:</p>
+      <p>$$y - y_1 = m(x - x_1)$$</p>
+      <div class="chalk">
+        <p>Find the equation of the line through \\((2,-1)\\) with gradient 4.</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(y - (-1) = 4(x-2)\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(y + 1 = 4x - 8\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(y = 4x - 9\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">03</span> Parallel and perpendicular lines</h2>
+      <p>Two lines are <strong>parallel</strong> if they have the same gradient. Two lines are <strong>perpendicular</strong> if their gradients multiply to \\(-1\\):</p>
+      <p>$$m_1 \\times m_2 = -1 \\quad \\iff \\quad m_2 = -\\frac{1}{m_1}$$</p>
+      <div class="chalk">
+        <p>Line \\(L_1\\) has equation \\(y = 3x + 2\\). Find the equation of the line perpendicular to \\(L_1\\) passing through \\((3,5)\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>Gradient of \\(L_1\\) is 3, so the perpendicular gradient is \\(-\\tfrac13\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(y - 5 = -\\tfrac13(x-3)\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(y = -\\tfrac13 x + 6\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">04</span> Intersections</h2>
+      <p>Two lines meet where their \\(y\\) values (and \\(x\\) values) are equal — so set the two expressions for \\(y\\) equal to each other and solve.</p>
+    `,
+    practice:[
+      {
+        q:"Find the gradient of the line through \\((1,2)\\) and \\((4,11)\\).",
+        steps:[
+          "\\(m = \\dfrac{11-2}{4-1} = \\dfrac{9}{3}\\)"
+        ],
+        final:"m = 3"
+      },
+      {
+        q:"Find the equation of the line with gradient \\(-2\\) passing through \\((5,1)\\).",
+        steps:[
+          "\\(y - 1 = -2(x-5)\\)",
+          "\\(y - 1 = -2x + 10\\)"
+        ],
+        final:"y = −2x + 11"
+      },
+      {
+        q:"A line L1 has equation \\(y = 3x + 2\\). Find the equation of the line perpendicular to L1 through \\((3,5)\\).",
+        steps:[
+          "Gradient of L1 is 3, so the perpendicular gradient is \\(-\\tfrac13\\)",
+          "\\(y - 5 = -\\tfrac13(x - 3) \\Rightarrow y = -\\tfrac13 x + 6\\)"
+        ],
+        final:"y = −⅓x + 6"
+      },
+      {
+        q:"Find the point of intersection of \\(y = 2x + 1\\) and \\(y = -x + 7\\).",
+        steps:[
+          "Set equal: \\(2x + 1 = -x + 7\\)",
+          "\\(3x = 6 \\Rightarrow x = 2\\)",
+          "Substitute back: \\(y = 2(2)+1 = 5\\)"
+        ],
+        final:"(2, 5)"
+      },
+    ]
+  },
+
+  trig: {
+    subjectKey:"maths",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M15 78 L95 78 L95 20 Z" stroke="#132821" stroke-width="2" fill="none" stroke-linejoin="round"/>
+      <path d="M25 78 A 10 10 0 0 1 22 69" stroke="#D8A93B" stroke-width="2" fill="none"/>
+    </svg>`,
+    title:"Trigonometry",
+    dek:"Beyond SOHCAHTOA: the sine rule, cosine rule, and solving trig equations.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> Right-angled triangle recap</h2>
+      <p>For a right-angled triangle, SOHCAHTOA still applies: \\(\\sin\\theta = \\tfrac{\\text{opp}}{\\text{hyp}}\\), \\(\\cos\\theta = \\tfrac{\\text{adj}}{\\text{hyp}}\\), \\(\\tan\\theta = \\tfrac{\\text{opp}}{\\text{adj}}\\). But most A-level triangles <em>aren't</em> right-angled — that's what the sine and cosine rules are for.</p>
+
+      <h2 class="section-title"><span class="num">02</span> The sine rule</h2>
+      <p>For any triangle with sides \\(a,b,c\\) opposite angles \\(A,B,C\\):</p>
+      <p>$$\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C}$$</p>
+      <p>Use it whenever you know a matching angle-side pair plus one more piece of information.</p>
+      <div class="chalk">
+        <p>In triangle ABC, \\(a=8\\), \\(A=40°\\), \\(B=65°\\). Find \\(b\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(\\dfrac{b}{\\sin B} = \\dfrac{a}{\\sin A} \\Rightarrow b = \\dfrac{8 \\sin65°}{\\sin40°}\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(b \\approx \\dfrac{8 \\times 0.9063}{0.6428} \\approx 11.3\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">03</span> The cosine rule</h2>
+      <p>Use the cosine rule instead when you know all three sides, or two sides and the angle between them:</p>
+      <p>$$a^2 = b^2 + c^2 - 2bc\\cos A$$</p>
+      <p>Rearranged, it also finds a missing angle: \\(\\cos A = \\dfrac{b^2+c^2-a^2}{2bc}\\).</p>
+      <div class="chalk">
+        <p>Triangle with \\(b=7\\), \\(c=10\\), \\(A=50°\\). Find \\(a\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(a^2 = 7^2 + 10^2 - 2(7)(10)\\cos50° = 49+100-140(0.6428)\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(a^2 \\approx 59.0 \\Rightarrow a \\approx 7.68\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">04</span> Area of a triangle</h2>
+      <p>When you know two sides and the included angle, skip "half base times height" entirely:</p>
+      <p>$$\\text{Area} = \\frac12 ab\\sin C$$</p>
+
+      <h2 class="section-title"><span class="num">05</span> Solving trig equations</h2>
+      <p>Because sine and cosine repeat every \\(360°\\), a trig equation usually has more than one solution within a given range. Use the graph or the CAST diagram to find every solution, not just the one your calculator gives you.</p>
+    `,
+    practice:[
+      {
+        q:"In triangle ABC, \\(a=8\\), \\(A=40°\\), \\(B=65°\\). Find side \\(b\\) to 3 s.f.",
+        steps:[
+          "\\(\\dfrac{b}{\\sin B} = \\dfrac{a}{\\sin A}\\)",
+          "\\(b = \\dfrac{8\\sin65°}{\\sin40°} \\approx \\dfrac{8(0.9063)}{0.6428}\\)"
+        ],
+        final:"b ≈ 11.3"
+      },
+      {
+        q:"A triangle has sides \\(b=7\\), \\(c=10\\) with included angle \\(A=50°\\). Find side \\(a\\) to 3 s.f.",
+        steps:[
+          "\\(a^2 = 7^2+10^2-2(7)(10)\\cos50°\\)",
+          "\\(a^2 = 149 - 140(0.6428) \\approx 59.0\\)"
+        ],
+        final:"a ≈ 7.68"
+      },
+      {
+        q:"Find the area of a triangle with two sides of 6 cm and 9 cm and an included angle of 70°.",
+        steps:[
+          "\\(\\text{Area} = \\tfrac12(6)(9)\\sin70°\\)",
+          "\\(= 27 \\times 0.9397\\)"
+        ],
+        final:"≈ 25.4 cm²"
+      },
+      {
+        q:"Solve \\(\\cos\\theta = 0.5\\) for \\(0° \\le \\theta \\le 360°\\).",
+        steps:[
+          "The principal solution is \\(\\theta = \\cos^{-1}(0.5) = 60°\\)",
+          "Cosine is also positive in the fourth quadrant: \\(\\theta = 360° - 60° = 300°\\)"
+        ],
+        final:"θ = 60° or 300°"
+      },
+    ]
+  },
+
+  differentiation: {
+    subjectKey:"maths",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="10" y1="78" x2="115" y2="78" stroke="#cfc4a4" stroke-width="1"/>
+      <line x1="18" y1="8" x2="18" y2="85" stroke="#cfc4a4" stroke-width="1"/>
+      <path d="M20 75 C 50 75, 55 15, 95 15" stroke="#132821" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <line x1="35" y1="80" x2="80" y2="35" stroke="#D8A93B" stroke-width="2" stroke-dasharray="3 2"/>
+      <circle cx="58" cy="57" r="2.5" fill="#D8A93B"/>
+    </svg>`,
+    title:"Differentiation",
+    dek:"Finding gradients, tangents, and turning points — the heart of A-level calculus.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> What differentiation means</h2>
+      <p>The derivative of a function tells you the gradient of the curve at any point — equivalently, the rate at which \\(y\\) is changing with respect to \\(x\\). We write it as \\(\\dfrac{dy}{dx}\\) or \\(f'(x)\\).</p>
+
+      <h2 class="section-title"><span class="num">02</span> The power rule</h2>
+      <p>For any term \\(x^n\\):</p>
+      <p>$$\\frac{d}{dx}(x^n) = nx^{n-1}$$</p>
+      <p>Differentiate a polynomial term by term — multiply each term by its power, then reduce the power by 1. Constants disappear (their gradient is always 0).</p>
+      <div class="chalk">
+        <p>Differentiate \\(y = 3x^4 - 5x^2 + 7x - 2\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(3x^4 \\to 12x^3\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(-5x^2 \\to -10x\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(7x \\to 7\\), and the constant \\(-2 \\to 0\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(\\dfrac{dy}{dx} = 12x^3 - 10x + 7\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">03</span> Gradients at a point</h2>
+      <p>To find the gradient of a curve at a specific point, differentiate first, then substitute in the x-value.</p>
+      <div class="chalk">
+        <p>Find the gradient of \\(y = x^3 - 4x\\) at \\(x=2\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(\\dfrac{dy}{dx} = 3x^2 - 4\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>At \\(x=2\\): \\(3(4) - 4 = 8\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">04</span> Tangents and normals</h2>
+      <p>The <strong>tangent</strong> to a curve at a point has the same gradient as the curve there. The <strong>normal</strong> is perpendicular to the tangent, so its gradient is \\(-1/m\\). Once you have a gradient and a point, use \\(y-y_1 = m(x-x_1)\\) as in straight-line graphs.</p>
+
+      <h2 class="section-title"><span class="num">05</span> Stationary points</h2>
+      <p>A stationary point is where the gradient is zero: solve \\(f'(x)=0\\). To classify it as a maximum, minimum, or point of inflection, use the second derivative \\(f''(x)\\):</p>
+      <div class="callout">
+        \\(f''(x) > 0\\): local minimum &nbsp;•&nbsp;
+        \\(f''(x) < 0\\): local maximum &nbsp;•&nbsp;
+        \\(f''(x) = 0\\): needs further checking (could be a point of inflection)
+      </div>
+      <div class="chalk">
+        <p>Find and classify the stationary points of \\(y = x^3 - 3x^2 - 9x + 5\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(\\dfrac{dy}{dx} = 3x^2 - 6x - 9 = 3(x-3)(x+1)\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>Stationary points at \\(x=3\\) and \\(x=-1\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(y(3) = 27-27-27+5=-22\\), &nbsp; \\(y(-1)=-1-3+9+5=10\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(\\dfrac{d^2y}{dx^2} = 6x-6\\). At \\(x=3\\): 12 (>0, minimum). At \\(x=-1\\): −12 (<0, maximum)</span></div>
+      </div>
+    `,
+    practice:[
+      {
+        q:"Differentiate \\(y = 3x^4 - 5x^2 + 7x - 2\\).",
+        steps:[
+          "Apply the power rule to each term: \\(3x^4 \\to 12x^3\\), \\(-5x^2 \\to -10x\\), \\(7x \\to 7\\), constant vanishes."
+        ],
+        final:"dy/dx = 12x³ − 10x + 7"
+      },
+      {
+        q:"Find the gradient of \\(y = x^3 - 4x\\) at \\(x = 2\\).",
+        steps:[
+          "\\(\\dfrac{dy}{dx} = 3x^2 - 4\\)",
+          "At \\(x=2\\): \\(3(2)^2 - 4 = 12-4\\)"
+        ],
+        final:"gradient = 8"
+      },
+      {
+        q:"Find the coordinates of the stationary points of \\(y = x^3 - 3x^2 - 9x + 5\\) and determine their nature.",
+        steps:[
+          "\\(\\dfrac{dy}{dx} = 3x^2-6x-9 = 3(x-3)(x+1) = 0 \\Rightarrow x=3 \\text{ or } x=-1\\)",
+          "\\(y(3) = -22\\), \\(y(-1) = 10\\)",
+          "\\(\\dfrac{d^2y}{dx^2}=6x-6\\): at \\(x=3\\) this is 12 (minimum); at \\(x=-1\\) this is \\(-12\\) (maximum)"
+        ],
+        final:"(3, −22) is a minimum; (−1, 10) is a maximum"
+      },
+      {
+        q:"Find the equation of the tangent to \\(y = x^2 + 1\\) at the point \\((2,5)\\).",
+        steps:[
+          "\\(\\dfrac{dy}{dx} = 2x\\), so at \\(x=2\\) the gradient is 4",
+          "\\(y - 5 = 4(x-2)\\)"
+        ],
+        final:"y = 4x − 3"
+      },
+    ]
+  },
+
+  "eq-ineq": {
+    subjectKey:"maths",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="10" y1="80" x2="115" y2="80" stroke="#cfc4a4" stroke-width="1"/>
+      <line x1="18" y1="8" x2="18" y2="85" stroke="#cfc4a4" stroke-width="1"/>
+      <line x1="20" y1="75" x2="105" y2="20" stroke="#D8A93B" stroke-width="2" stroke-linecap="round"/>
+      <path d="M20 20 C 55 20, 60 75, 100 75" stroke="#132821" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </svg>`,
+    title:"Equations & Inequalities",
+    dek:"Solving systems of equations, and finding the ranges of values that satisfy an inequality.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> Linear simultaneous equations</h2>
+      <p>When two linear equations must both be true at once, either eliminate a variable by adding/subtracting multiples of the equations, or substitute one into the other.</p>
+      <div class="chalk">
+        <p>Solve \\(x + y = 7\\) and \\(2x - y = 2\\) simultaneously.</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>Add the equations to eliminate \\(y\\): \\(3x = 9 \\Rightarrow x = 3\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>Substitute back: \\(3 + y = 7 \\Rightarrow y = 4\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">02</span> Linear and quadratic simultaneous equations</h2>
+      <p>When one equation is linear and the other quadratic, rearrange the linear equation for one variable and substitute it into the quadratic. This gives a quadratic in a single variable to solve.</p>
+      <div class="chalk">
+        <p>Solve \\(y = x - 1\\) and \\(x^2 + y^2 = 25\\) simultaneously.</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>Substitute: \\(x^2 + (x-1)^2 = 25\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(x^2 + x^2 - 2x + 1 = 25 \\Rightarrow 2x^2 - 2x - 24 = 0 \\Rightarrow x^2 - x - 12 = 0\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\((x-4)(x+3) = 0 \\Rightarrow x = 4\\) or \\(x=-3\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>Using \\(y=x-1\\): \\((4,3)\\) and \\((-3,-4)\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">03</span> Linear inequalities</h2>
+      <p>Solve a linear inequality exactly like an equation, with one crucial rule: <strong>flip the inequality sign whenever you multiply or divide by a negative number</strong>.</p>
+      <div class="chalk">
+        <p>Solve \\(5 - 3x \\le 11\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(-3x \\le 6\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>Divide by \\(-3\\) and flip the sign: \\(x \\ge -2\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">04</span> Quadratic inequalities</h2>
+      <p>Sketch the parabola, find where it crosses the x-axis, then read off the region asked for from the sketch — this avoids sign errors that pure algebra invites.</p>
+      <div class="chalk">
+        <p>Solve \\(x^2 - 2x - 8 < 0\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>Factorise: \\((x-4)(x+2) = 0 \\Rightarrow\\) roots at \\(x=-2\\) and \\(x=4\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>The parabola opens upward, so it's below zero <em>between</em> its roots.</span></div>
+      </div>
+    `,
+    practice:[
+      {
+        q:"Solve simultaneously: \\(x + y = 7\\), \\(2x - y = 2\\).",
+        steps:[
+          "Add the equations: \\(3x = 9 \\Rightarrow x = 3\\)",
+          "Substitute into the first equation: \\(y = 7 - 3\\)"
+        ],
+        final:"x = 3, y = 4"
+      },
+      {
+        q:"Solve simultaneously: \\(y = x - 1\\), \\(x^2 + y^2 = 25\\).",
+        steps:[
+          "Substitute: \\(x^2 + (x-1)^2 = 25 \\Rightarrow 2x^2 - 2x - 24 = 0 \\Rightarrow x^2-x-12=0\\)",
+          "\\((x-4)(x+3)=0 \\Rightarrow x=4\\) or \\(x=-3\\)",
+          "Using \\(y = x-1\\)"
+        ],
+        final:"(4, 3) and (−3, −4)"
+      },
+      {
+        q:"Solve the inequality \\(5 - 3x \\le 11\\).",
+        steps:[
+          "\\(-3x \\le 6\\)",
+          "Divide by −3, flipping the inequality: \\(x \\ge -2\\)"
+        ],
+        final:"x ≥ −2"
+      },
+      {
+        q:"Solve \\(x^2 - 2x - 8 < 0\\).",
+        steps:[
+          "Factorise: \\((x-4)(x+2) < 0\\), so the roots are \\(x=-2\\) and \\(x=4\\)",
+          "The parabola opens upward, so it is negative between the roots."
+        ],
+        final:"−2 < x < 4"
+      },
+    ]
+  },
+
+  "graphs-trans": {
+    subjectKey:"maths",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="10" y1="78" x2="115" y2="78" stroke="#cfc4a4" stroke-width="1"/>
+      <line x1="18" y1="8" x2="18" y2="85" stroke="#cfc4a4" stroke-width="1"/>
+      <path d="M22 70 C 40 20, 60 20, 78 70" stroke="#132821" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M32 60 C 50 10, 70 10, 88 60" stroke="#D8A93B" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="4 2"/>
+    </svg>`,
+    title:"Graphs & Transformations",
+    dek:"Reading the shape of a curve from its equation, and shifting, stretching, and reflecting it.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> Recognising a curve's shape</h2>
+      <p>Before plotting anything, the equation itself tells you a lot: the degree of a polynomial tells you its general shape, the sign of the leading coefficient tells you which way the ends point, and setting \\(x=0\\) or \\(y=0\\) gives you the intercepts.</p>
+
+      <h2 class="section-title"><span class="num">02</span> The four core transformations</h2>
+      <p>Every transformation of \\(y=f(x)\\) falls into one of these categories:</p>
+      <div class="callout">
+        \\(y = f(x) + a\\): translation \\(a\\) units <strong>up</strong> &nbsp;•&nbsp;
+        \\(y = f(x+a)\\): translation \\(a\\) units to the <strong>left</strong> &nbsp;•&nbsp;
+        \\(y = a f(x)\\): vertical stretch, scale factor \\(a\\) &nbsp;•&nbsp;
+        \\(y = f(ax)\\): horizontal stretch, scale factor \\(\\tfrac1a\\)
+      </div>
+      <p>Two extra reflections are worth memorising too: \\(y=-f(x)\\) reflects in the x-axis, and \\(y=f(-x)\\) reflects in the y-axis.</p>
+      <div class="chalk">
+        <p>Describe the transformation that maps \\(y=x^2\\) to \\(y=(x-2)^2+1\\), and state the new turning point.</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\((x-2)^2\\) is a translation 2 units right; \\(+1\\) outside is a translation 1 unit up.</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>The original turning point of \\(y=x^2\\) is \\((0,0)\\), so the new one is \\((2,1)\\).</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">03</span> Combining transformations</h2>
+      <p>When several transformations are applied together, order matters. A safe approach: apply any stretches and reflections first (they act directly on \\(x\\) or \\(y\\)), then apply translations last.</p>
+    `,
+    practice:[
+      {
+        q:"Describe the transformation that maps \\(y=f(x)\\) to \\(y=f(x)+3\\).",
+        steps:[
+          "Adding a constant outside \\(f(x)\\) shifts every output value up by that amount."
+        ],
+        final:"Translation 3 units up"
+      },
+      {
+        q:"The graph of \\(y=x^2\\) is transformed to \\(y=(x-2)^2+1\\). State the new turning point.",
+        steps:[
+          "\\((x-2)^2\\): translation 2 right. \\(+1\\): translation 1 up.",
+          "Original turning point \\((0,0) \\to (2,1)\\)"
+        ],
+        final:"(2, 1)"
+      },
+      {
+        q:"Describe how the graph of \\(y=-f(x)\\) compares to \\(y=f(x)\\).",
+        steps:[
+          "Multiplying the whole function by \\(-1\\) flips every y-value to its negative."
+        ],
+        final:"It's a reflection in the x-axis"
+      },
+      {
+        q:"Given \\(f(x)=x^2\\), find the equation of the graph obtained by stretching \\(f\\) with scale factor 3 in the y-direction, then translating 4 units right.",
+        steps:[
+          "Vertical stretch by 3: \\(y = 3x^2\\)",
+          "Then translate 4 right, replacing \\(x\\) with \\(x-4\\): \\(y = 3(x-4)^2\\)"
+        ],
+        final:"y = 3(x − 4)²"
+      },
+    ]
+  },
+
+  circles: {
+    subjectKey:"maths",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="45" r="32" stroke="#132821" stroke-width="2" fill="none"/>
+      <circle cx="60" cy="45" r="2.5" fill="#132821"/>
+      <line x1="60" y1="45" x2="88" y2="27" stroke="#D8A93B" stroke-width="2"/>
+    </svg>`,
+    title:"Circles",
+    dek:"The equation of a circle, tangents, and the geometry that ties them together.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> Equation of a circle</h2>
+      <p>A circle with centre \\((a,b)\\) and radius \\(r\\) has equation:</p>
+      <p>$$(x-a)^2 + (y-b)^2 = r^2$$</p>
+      <p>This comes directly from Pythagoras: any point \\((x,y)\\) on the circle is a distance \\(r\\) from the centre.</p>
+
+      <h2 class="section-title"><span class="num">02</span> Finding the centre and radius</h2>
+      <p>A circle equation is sometimes given in expanded form, \\(x^2+y^2+2gx+2fy+c=0\\). Complete the square on the \\(x\\) terms and the \\(y\\) terms separately to get back to \\((x-a)^2+(y-b)^2=r^2\\).</p>
+      <div class="chalk">
+        <p>Find the centre and radius of \\(x^2+y^2-6x+4y-3=0\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>Group and complete the square: \\((x^2-6x) + (y^2+4y) = 3\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\((x-3)^2-9 + (y+2)^2-4 = 3\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\((x-3)^2+(y+2)^2 = 16\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>Centre \\((3,-2)\\), radius \\(4\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">03</span> Tangents to a circle</h2>
+      <p>A tangent touches the circle at exactly one point and is always <strong>perpendicular to the radius</strong> at that point. Find the gradient of the radius first, then use the perpendicular-gradient rule.</p>
+      <div class="chalk">
+        <p>Find the equation of the tangent to \\((x-1)^2+(y-2)^2=25\\) at the point \\((4,6)\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>Gradient of the radius from \\((1,2)\\) to \\((4,6)\\): \\(\\dfrac{6-2}{4-1} = \\dfrac43\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>Tangent gradient: \\(-\\dfrac34\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(y - 6 = -\\dfrac34(x-4) \\Rightarrow y = -\\dfrac34 x + 9\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">04</span> Useful circle facts</h2>
+      <div class="callout">
+        The angle in a semicircle is always 90° &nbsp;•&nbsp;
+        A line from the centre perpendicular to a chord always bisects that chord
+      </div>
+    `,
+    practice:[
+      {
+        q:"State the centre and radius of the circle \\((x+2)^2+(y-5)^2=49\\).",
+        steps:[
+          "Compare to \\((x-a)^2+(y-b)^2=r^2\\): here \\(a=-2,\\ b=5,\\ r^2=49\\)"
+        ],
+        final:"Centre (−2, 5), radius 7"
+      },
+      {
+        q:"Find the centre and radius of \\(x^2+y^2+8x-2y+8=0\\).",
+        steps:[
+          "\\((x^2+8x) + (y^2-2y) = -8\\)",
+          "\\((x+4)^2-16 + (y-1)^2-1 = -8\\)",
+          "\\((x+4)^2+(y-1)^2 = 9\\)"
+        ],
+        final:"Centre (−4, 1), radius 3"
+      },
+      {
+        q:"A circle has centre \\((1,2)\\) and passes through \\((4,6)\\). Find its equation.",
+        steps:[
+          "Radius = distance from centre to the point: \\(\\sqrt{(4-1)^2+(6-2)^2} = \\sqrt{9+16} = \\sqrt{25} = 5\\)"
+        ],
+        final:"(x − 1)² + (y − 2)² = 25"
+      },
+      {
+        q:"Find the equation of the tangent to \\((x-1)^2+(y-2)^2=25\\) at the point \\((4,6)\\).",
+        steps:[
+          "Gradient of radius: \\(\\dfrac{6-2}{4-1} = \\dfrac43\\), so tangent gradient is \\(-\\dfrac34\\)",
+          "\\(y-6 = -\\dfrac34(x-4)\\)"
+        ],
+        final:"y = −¾x + 9"
+      },
+    ]
+  },
+
+  "exp-log": {
+    subjectKey:"maths",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="10" y1="78" x2="115" y2="78" stroke="#cfc4a4" stroke-width="1"/>
+      <line x1="18" y1="8" x2="18" y2="85" stroke="#cfc4a4" stroke-width="1"/>
+      <path d="M20 76 C 45 76, 55 20, 100 15" stroke="#D8A93B" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    </svg>`,
+    title:"Exponentials & Logarithms",
+    dek:"Growth, decay, and the inverse relationship between logs and powers.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> Exponential functions</h2>
+      <p>A function of the form \\(y=a^x\\) grows (or decays) by a fixed multiplicative factor. Every exponential curve of this type passes through \\((0,1)\\) since \\(a^0=1\\), and stays strictly positive.</p>
+
+      <h2 class="section-title"><span class="num">02</span> Logarithms as the inverse</h2>
+      <p>A logarithm answers "what power?" — \\(\\log_a x\\) is the power you raise \\(a\\) to, to get \\(x\\):</p>
+      <p>$$\\log_a x = y \\iff a^y = x$$</p>
+
+      <h2 class="section-title"><span class="num">03</span> Laws of logarithms</h2>
+      <p>These follow directly from the laws of indices:</p>
+      <p>$$\\log(ab) = \\log a + \\log b \\qquad \\log\\!\\left(\\frac{a}{b}\\right) = \\log a - \\log b \\qquad \\log(a^n) = n\\log a$$</p>
+
+      <h2 class="section-title"><span class="num">04</span> Solving exponential equations</h2>
+      <p>To solve for a variable stuck in an exponent, take logs of both sides.</p>
+      <div class="chalk">
+        <p>Solve \\(3^x = 50\\), giving your answer to 3 s.f.</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>Take logs of both sides: \\(x\\ln3 = \\ln50\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(x = \\dfrac{\\ln50}{\\ln3} \\approx \\dfrac{3.912}{1.099}\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">05</span> Solving equations with logs</h2>
+      <p>Combine multiple logs into a single one using the laws above, then convert to exponential form. Always check any solution against the domain of the original logs (their arguments must be positive).</p>
+      <div class="chalk">
+        <p>Solve \\(\\log_2 x + \\log_2(x-2) = 3\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>Combine: \\(\\log_2\\big[x(x-2)\\big] = 3\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(x(x-2) = 2^3 = 8 \\Rightarrow x^2-2x-8=0 \\Rightarrow (x-4)(x+2)=0\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(x=-2\\) is rejected since \\(\\log_2(x)\\) needs \\(x>0\\), so \\(x=4\\)</span></div>
+      </div>
+    `,
+    practice:[
+      {
+        q:"Solve \\(3^x = 50\\), giving your answer to 3 s.f.",
+        steps:[
+          "\\(x\\ln3 = \\ln50\\)",
+          "\\(x = \\dfrac{\\ln50}{\\ln3} \\approx \\dfrac{3.912}{1.099}\\)"
+        ],
+        final:"x ≈ 3.56"
+      },
+      {
+        q:"Simplify \\(\\log8 + \\log2 - \\log4\\) as a single logarithm.",
+        steps:[
+          "\\(\\log8+\\log2 = \\log16\\)",
+          "\\(\\log16 - \\log4 = \\log(16/4)\\)"
+        ],
+        final:"log 4"
+      },
+      {
+        q:"Solve \\(\\log_3(x+2) = 2\\).",
+        steps:[
+          "Convert to exponential form: \\(x+2 = 3^2 = 9\\)"
+        ],
+        final:"x = 7"
+      },
+      {
+        q:"Solve \\(\\log_2 x + \\log_2(x-2) = 3\\), stating any restriction on \\(x\\).",
+        steps:[
+          "\\(\\log_2[x(x-2)] = 3 \\Rightarrow x(x-2) = 8\\)",
+          "\\(x^2-2x-8=0 \\Rightarrow (x-4)(x+2)=0 \\Rightarrow x=4\\) or \\(x=-2\\)",
+          "\\(x=-2\\) is rejected as \\(x>2\\) is needed for both logs to be defined."
+        ],
+        final:"x = 4"
+      },
+    ]
+  },
+
+  integration: {
+    subjectKey:"maths",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="10" y1="78" x2="115" y2="78" stroke="#cfc4a4" stroke-width="1"/>
+      <line x1="18" y1="8" x2="18" y2="85" stroke="#cfc4a4" stroke-width="1"/>
+      <path d="M20 75 C 45 75, 55 20, 95 20" stroke="#132821" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M40 75 L40 55 L95 20 L95 75 Z" fill="#D8A93B" opacity="0.35"/>
+    </svg>`,
+    title:"Integration",
+    dek:"Reversing differentiation, and using it to find the area under a curve.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> Integration as the reverse process</h2>
+      <p>Integration undoes differentiation. For each power term:</p>
+      <p>$$\\int x^n \\, dx = \\frac{x^{n+1}}{n+1} + c \\qquad (n \\neq -1)$$</p>
+      <p>The <strong>+c</strong> matters: differentiating any constant gives 0, so integrating loses information about what constant was there originally — this is an <em>indefinite</em> integral.</p>
+      <div class="chalk">
+        <p>Find \\(\\displaystyle\\int (3x^2 - 4x + 5)\\, dx\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>Integrate term by term, raising each power by 1 and dividing by the new power.</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(= x^3 - 2x^2 + 5x + c\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">02</span> Definite integrals</h2>
+      <p>A definite integral has limits, and evaluates to a number (no \\(+c\\) needed, since it cancels):</p>
+      <p>$$\\int_a^b f(x)\\, dx = \\Big[F(x)\\Big]_a^b = F(b) - F(a)$$</p>
+      <div class="chalk">
+        <p>Evaluate \\(\\displaystyle\\int_1^3 (2x+1)\\, dx\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(\\Big[x^2+x\\Big]_1^3 = (9+3) - (1+1)\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(= 12 - 2 = 10\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">03</span> Area under a curve</h2>
+      <p>The definite integral \\(\\int_a^b f(x)\\,dx\\) gives the area between the curve and the x-axis between \\(x=a\\) and \\(x=b\\) — as long as the curve stays above the x-axis on that interval. Where a curve dips below the axis, that part contributes a negative value to the integral.</p>
+    `,
+    practice:[
+      {
+        q:"Find \\(\\displaystyle\\int (4x^3 - 6x + 2)\\, dx\\).",
+        steps:[
+          "Integrate term by term: \\(4x^3 \\to x^4\\), \\(-6x \\to -3x^2\\), \\(2 \\to 2x\\)"
+        ],
+        final:"x⁴ − 3x² + 2x + c"
+      },
+      {
+        q:"Evaluate \\(\\displaystyle\\int_0^2 (3x^2+1)\\, dx\\).",
+        steps:[
+          "Antiderivative: \\(x^3+x\\)",
+          "\\(\\Big[x^3+x\\Big]_0^2 = (8+2) - 0\\)"
+        ],
+        final:"10"
+      },
+      {
+        q:"Find the area enclosed between the curve \\(y=x^2+1\\), the x-axis, and the lines \\(x=1\\) and \\(x=3\\).",
+        steps:[
+          "\\(\\displaystyle\\int_1^3 (x^2+1)\\,dx = \\Big[\\tfrac{x^3}{3}+x\\Big]_1^3\\)",
+          "At \\(x=3\\): \\(9+3=12\\). At \\(x=1\\): \\(\\tfrac13+1=\\tfrac43\\)",
+          "\\(12 - \\tfrac43 = \\tfrac{32}{3}\\)"
+        ],
+        final:"32/3 square units"
+      },
+      {
+        q:"Find \\(\\displaystyle\\int \\sqrt{x}\\, dx\\).",
+        steps:[
+          "Write \\(\\sqrt x = x^{1/2}\\)",
+          "\\(\\displaystyle\\int x^{1/2}\\,dx = \\dfrac{x^{3/2}}{3/2} + c\\)"
+        ],
+        final:"(2/3)x^(3/2) + c"
+      },
+    ]
+  },
+
+  vectors: {
+    subjectKey:"maths",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="15" y1="75" x2="90" y2="20" stroke="#132821" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M90 20 L78 24 M90 20 L86 32" stroke="#132821" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <line x1="15" y1="75" x2="65" y2="75" stroke="#cfc4a4" stroke-width="1" stroke-dasharray="3 2"/>
+      <line x1="65" y1="75" x2="90" y2="20" stroke="#cfc4a4" stroke-width="1" stroke-dasharray="3 2"/>
+    </svg>`,
+    title:"Vectors",
+    dek:"Describing position and movement with magnitude and direction.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> Vector notation and magnitude</h2>
+      <p>A vector like \\(\\begin{pmatrix}3\\\\-4\\end{pmatrix}\\), or equivalently \\(3\\mathbf{i}-4\\mathbf{j}\\), has both size and direction. Its magnitude comes straight from Pythagoras:</p>
+      <p>$$|\\mathbf{v}| = \\sqrt{x^2+y^2}$$</p>
+      <div class="chalk">
+        <p>Find the magnitude of the vector \\((3,-4)\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(|\\mathbf v| = \\sqrt{3^2+(-4)^2} = \\sqrt{9+16} = \\sqrt{25}\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(= 5\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">02</span> Position vectors and displacement</h2>
+      <p>The position vector of a point is simply its coordinates written as a vector from the origin. The vector from point \\(A\\) to point \\(B\\) is found by subtracting position vectors:</p>
+      <p>$$\\overrightarrow{AB} = \\mathbf{b} - \\mathbf{a}$$</p>
+      <div class="chalk">
+        <p>Points \\(A(1,2)\\) and \\(B(4,-1)\\). Find \\(\\overrightarrow{AB}\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(\\overrightarrow{AB} = \\mathbf b - \\mathbf a = (4-1,\\ -1-2)\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(= (3,-3)\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">03</span> Adding, subtracting, and scaling vectors</h2>
+      <p>Add or subtract vectors component-wise. Multiplying a vector by a scalar \\(k\\) scales its magnitude by \\(|k|\\) and reverses its direction if \\(k\\) is negative.</p>
+
+      <h2 class="section-title"><span class="num">04</span> Parallel vectors</h2>
+      <p>Two vectors are parallel exactly when one is a scalar multiple of the other — check whether the ratio between corresponding components is the same throughout.</p>
+    `,
+    practice:[
+      {
+        q:"Find the magnitude of the vector \\(6\\mathbf i - 8\\mathbf j\\).",
+        steps:[
+          "\\(|\\mathbf v| = \\sqrt{6^2+(-8)^2} = \\sqrt{36+64} = \\sqrt{100}\\)"
+        ],
+        final:"10"
+      },
+      {
+        q:"Points \\(A(2,5)\\) and \\(B(7,-1)\\). Find \\(\\overrightarrow{AB}\\).",
+        steps:[
+          "\\(\\overrightarrow{AB} = (7-2,\\ -1-5)\\)"
+        ],
+        final:"(5, −6)"
+      },
+      {
+        q:"Given \\(\\mathbf a=(2,-3)\\) and \\(\\mathbf b=(-1,4)\\), find \\(2\\mathbf a+\\mathbf b\\).",
+        steps:[
+          "\\(2\\mathbf a = (4,-6)\\)",
+          "\\(2\\mathbf a + \\mathbf b = (4-1,\\ -6+4)\\)"
+        ],
+        final:"(3, −2)"
+      },
+      {
+        q:"Determine whether the vectors \\((4,6)\\) and \\((6,9)\\) are parallel.",
+        steps:[
+          "Compare component ratios: \\(6/4 = 1.5\\) and \\(9/6 = 1.5\\)",
+          "Since the ratios match, \\((6,9) = 1.5 \\times (4,6)\\)"
+        ],
+        final:"Yes — they are parallel"
+      },
+    ]
+  },
+
+  sequences: {
+    subjectKey:"maths",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="20" cy="70" r="4" fill="#132821"/>
+      <circle cx="42" cy="55" r="4" fill="#132821"/>
+      <circle cx="64" cy="38" r="4" fill="#D8A93B"/>
+      <circle cx="86" cy="24" r="4" fill="#D8A93B"/>
+      <circle cx="106" cy="12" r="4" fill="#D8A93B"/>
+    </svg>`,
+    title:"Sequences & Series",
+    dek:"Arithmetic and geometric patterns, and how to sum them efficiently.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> Arithmetic sequences</h2>
+      <p>An arithmetic sequence increases (or decreases) by the same amount, the <strong>common difference</strong> \\(d\\), each time. The nth term and sum of the first \\(n\\) terms:</p>
+      <p>$$a_n = a + (n-1)d \\qquad S_n = \\frac{n}{2}\\big(2a + (n-1)d\\big)$$</p>
+      <div class="chalk">
+        <p>First term 5, common difference 3. Find the 10th term and the sum of the first 10 terms.</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(a_{10} = 5 + 9(3) = 32\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(S_{10} = \\dfrac{10}{2}\\big(2(5)+9(3)\\big) = 5(37) = 185\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">02</span> Geometric sequences</h2>
+      <p>A geometric sequence multiplies by the same <strong>common ratio</strong> \\(r\\) each time:</p>
+      <p>$$a_n = ar^{n-1} \\qquad S_n = \\frac{a(1-r^n)}{1-r}\\ (r\\neq1)$$</p>
+      <div class="chalk">
+        <p>First term 2, common ratio 3. Find the 6th term and the sum of the first 6 terms.</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(a_6 = 2 \\times 3^5 = 2 \\times 243 = 486\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(S_6 = \\dfrac{2(1-3^6)}{1-3} = \\dfrac{2(-728)}{-2} = 728\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">03</span> Sum to infinity</h2>
+      <p>If \\(|r|<1\\), the terms of a geometric sequence shrink toward zero, and the series converges to a finite total:</p>
+      <p>$$S_\\infty = \\frac{a}{1-r} \\qquad (|r| < 1)$$</p>
+    `,
+    practice:[
+      {
+        q:"An arithmetic sequence has first term 4 and common difference 5. Find the 12th term.",
+        steps:[
+          "\\(a_{12} = 4 + 11(5)\\)"
+        ],
+        final:"59"
+      },
+      {
+        q:"Find the sum of the first 20 terms of an arithmetic sequence with \\(a=3\\), \\(d=4\\).",
+        steps:[
+          "\\(S_{20} = \\dfrac{20}{2}\\big(2(3)+19(4)\\big) = 10(6+76)\\)"
+        ],
+        final:"820"
+      },
+      {
+        q:"A geometric sequence has \\(a=5\\), \\(r=2\\). Find the 8th term.",
+        steps:[
+          "\\(a_8 = 5 \\times 2^7 = 5 \\times 128\\)"
+        ],
+        final:"640"
+      },
+      {
+        q:"Find the sum to infinity of the geometric series with \\(a=8\\), \\(r=0.5\\).",
+        steps:[
+          "\\(S_\\infty = \\dfrac{8}{1-0.5} = \\dfrac{8}{0.5}\\)"
+        ],
+        final:"16"
+      },
+    ]
+  },
+
+  binomial: {
+    subjectKey:"maths",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <text x="20" y="30" font-family="IBM Plex Mono" font-size="14" fill="#cfc4a4">1</text>
+      <text x="14" y="48" font-family="IBM Plex Mono" font-size="14" fill="#cfc4a4">1 1</text>
+      <text x="8" y="66" font-family="IBM Plex Mono" font-size="14" fill="#132821">1 2 1</text>
+      <text x="2" y="84" font-family="IBM Plex Mono" font-size="14" fill="#D8A93B">1 3 3 1</text>
+    </svg>`,
+    title:"Binomial Expansion",
+    dek:"Expanding (a + b)ⁿ without multiplying it out by hand.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> Pascal's triangle and combinations</h2>
+      <p>The coefficients in the expansion of \\((a+b)^n\\) are the entries of Pascal's triangle, given exactly by the combination formula:</p>
+      <p>$$\\binom{n}{r} = {}^nC_r = \\frac{n!}{r!(n-r)!}$$</p>
+
+      <h2 class="section-title"><span class="num">02</span> The binomial theorem</h2>
+      <p>$$(a+b)^n = \\sum_{r=0}^{n} \\binom{n}{r} a^{n-r}b^r$$</p>
+      <div class="chalk">
+        <p>Expand \\((1+2x)^4\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>Coefficients from row 4 of Pascal's triangle: 1, 4, 6, 4, 1</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(1 + 4(2x) + 6(2x)^2 + 4(2x)^3 + (2x)^4\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(= 1 + 8x + 24x^2 + 32x^3 + 16x^4\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">03</span> Finding a specific term</h2>
+      <p>You rarely need the whole expansion — often just one coefficient. The term in \\(b^r\\) of \\((a+b)^n\\) is \\(\\binom{n}{r}a^{n-r}b^r\\), so pick the \\(r\\) that gives the power you want.</p>
+      <div class="chalk">
+        <p>Find the coefficient of \\(x^3\\) in the expansion of \\((2+x)^5\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>We need \\(r=3\\): term is \\(\\binom{5}{3}(2)^{5-3}x^3\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(= 10 \\times 4 \\times x^3 = 40x^3\\)</span></div>
+      </div>
+    `,
+    practice:[
+      {
+        q:"Expand \\((1+x)^5\\) fully.",
+        steps:[
+          "Row 5 of Pascal's triangle: 1, 5, 10, 10, 5, 1"
+        ],
+        final:"1 + 5x + 10x² + 10x³ + 5x⁴ + x⁵"
+      },
+      {
+        q:"Find the first three terms of \\((1+3x)^6\\) in ascending powers of x.",
+        steps:[
+          "\\(\\binom{6}{0}=1\\)",
+          "\\(\\binom{6}{1}(3x) = 18x\\)",
+          "\\(\\binom{6}{2}(3x)^2 = 15 \\times 9x^2 = 135x^2\\)"
+        ],
+        final:"1 + 18x + 135x²"
+      },
+      {
+        q:"Find the coefficient of \\(x^2\\) in the expansion of \\((2-x)^6\\).",
+        steps:[
+          "Term in \\(x^2\\): \\(\\binom{6}{2}(2)^4(-x)^2\\)",
+          "\\(= 15 \\times 16 \\times x^2\\)"
+        ],
+        final:"240"
+      },
+      {
+        q:"Find the coefficient of \\(x^3\\) in the expansion of \\((2+x)^5\\).",
+        steps:[
+          "Term in \\(x^3\\): \\(\\binom{5}{3}(2)^2 x^3\\)",
+          "\\(= 10 \\times 4 \\times x^3\\)"
+        ],
+        final:"40"
+      },
+    ]
+  }
+};
+
+/* ============================================================
+   RENDERING
+   ============================================================ */
+
+function iconFor(subjectKey){
+  return subjectKey === "further" ? "◆" : "●";
+}
+
+function buildNav(){
+  const root = document.getElementById("nav-root");
+  root.innerHTML = "";
+  Object.values(COURSE).forEach((subject, si) => {
+    const details = document.createElement("details");
+    details.className = "nav-subject" + (subject.key === "further" ? " fm" : "");
+    details.open = si === 0;
+    const summary = document.createElement("summary");
+    summary.innerHTML = `<span>${subject.label}</span><span class="chev">▸</span>`;
+    details.appendChild(summary);
+
+    subject.groups.forEach(group => {
+      const groupWrap = document.createElement("div");
+      groupWrap.className = "nav-group";
+      const gTitle = document.createElement("div");
+      gTitle.className = "nav-group-title";
+      gTitle.textContent = group.title;
+      groupWrap.appendChild(gTitle);
+
+      group.topics.forEach(topic => {
+        const btn = document.createElement("button");
+        btn.className = "nav-item" + (subject.key === "further" ? " fm" : "");
+        btn.dataset.id = topic.id;
+        btn.innerHTML = `<span class="nav-dot"></span><span>${topic.name}</span>` +
+          (topic.status === "soon" ? `<span class="soon-tag">soon</span>` : "");
+        btn.addEventListener("click", () => selectTopic(subject.key, group, topic));
+        groupWrap.appendChild(btn);
+      });
+      details.appendChild(groupWrap);
+    });
+    root.appendChild(details);
+  });
+}
+
+function renderLanding(){
+  const c = document.getElementById("content");
+  c.innerHTML = `
+    <div class="eyebrow">Welcome</div>
+    <h1 class="chapter-title">Proof &amp; Paper</h1>
+    <p class="chapter-dek">A topic-by-topic walkthrough of A-Level Mathematics and Further Mathematics. Pick a chapter from the left, read the walkthrough, then test yourself with practice questions and full worked answers.</p>
+    <div class="landing-grid">
+      <div class="landing-card" data-jump="quadratics">
+        <div class="tag">Pure Mathematics · Ready now</div>
+        <h3>Quadratics</h3>
+        <p>Factorising, completing the square, the formula and the discriminant — start here.</p>
+      </div>
+      <div class="landing-card fm" data-jump="complex">
+        <div class="tag">Further Pure · Ready now</div>
+        <h3>Complex Numbers</h3>
+        <p>Meet i, learn the arithmetic, and plot your first Argand diagram.</p>
+      </div>
+    </div>
+  `;
+  c.querySelectorAll(".landing-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const id = card.dataset.jump;
+      const ch = CHAPTERS[id];
+      const subject = COURSE[ch.subjectKey];
+      let group, topic;
+      subject.groups.forEach(g => g.topics.forEach(t => { if(t.id===id){group=g;topic=t;} }));
+      selectTopic(ch.subjectKey, group, topic);
+    });
+  });
+}
+
+function selectTopic(subjectKey, group, topic){
+  visited.add(topic.id);
+  updateNavActive(topic.id);
+  updateProgress();
+
+  const c = document.getElementById("content");
+  const isFM = subjectKey === "further";
+
+  if(topic.status === "soon"){
+    c.className = isFM ? "fm" : "";
+    c.innerHTML = `
+      <div class="eyebrow ${isFM?'fm':''}">${COURSE[subjectKey].label} <span class="sep">/</span> ${group.title}</div>
+      <h1 class="chapter-title">${topic.name}</h1>
+      <div class="soon-wrap">
+        <span class="soon-badge">Coming soon</span>
+        <p class="chapter-dek">${topic.blurb}</p>
+        <p>This chapter is on the roadmap and isn't fully written yet. Once it's built out it will follow the same format as the completed chapters: a full walkthrough of every method, worked examples, and a set of practice questions with revealable step-by-step answers.</p>
+      </div>
+    `;
+    c.scrollIntoView({behavior:"instant", block:"start"});
+    return;
+  }
+
+  const ch = CHAPTERS[topic.id];
+  c.className = isFM ? "fm" : "";
+  let practiceHTML = ch.practice.map((p, i) => `
+    <div class="q-card">
+      <div class="q-head">
+        <span class="q-num">${i+1}</span>
+        <span class="q-text">${p.q}</span>
+      </div>
+      <button class="reveal-btn" data-target="ans-${topic.id}-${i}">Show worked solution</button>
+      <div class="answer-wrap" id="ans-${topic.id}-${i}">
+        <div class="answer-inner">
+          ${p.steps.map(s => `<div class="chalk-step" style="color:#3a453f;"><span class="arrow" style="color:${isFM?'#2b6459':'#a97f22'}">→</span><span>${s}</span></div>`).join("")}
+          <div class="final">Answer: ${p.final}</div>
+        </div>
+      </div>
+    </div>
+  `).join("");
+
+  c.innerHTML = `
+    <div class="eyebrow ${isFM?'fm':''}">${COURSE[subjectKey].label} <span class="sep">/</span> ${group.title}</div>
+    <div class="chapter-motif">${ch.motif}</div>
+    <h1 class="chapter-title">${ch.title}</h1>
+    <p class="chapter-dek">${ch.dek}</p>
+    ${ch.body}
+    <div class="practice-block">
+      <h2 class="practice-heading">Practice questions</h2>
+      <p class="practice-sub">Try each one yourself before revealing the worked solution.</p>
+      ${practiceHTML}
+    </div>
+  `;
+
+  c.querySelectorAll(".reveal-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const wrap = document.getElementById(btn.dataset.target);
+      const opening = !wrap.classList.contains("open");
+      wrap.classList.toggle("open");
+      btn.classList.toggle("open");
+      btn.textContent = opening ? "Hide worked solution" : "Show worked solution";
+    });
+  });
+
+  renderMath(c);
+  c.scrollIntoView({behavior:"instant", block:"start"});
+}
+
+function updateNavActive(id){
+  document.querySelectorAll(".nav-item").forEach(b => {
+    b.classList.toggle("active", b.dataset.id === id);
+    if(visited.has(b.dataset.id)) b.classList.add("visited");
+  });
+}
+
+function updateProgress(){
+  document.getElementById("progress-text").textContent =
+    `${visited.size} of ${totalTopics} topics visited`;
+}
+
+function renderMath(el){
+  if(window.renderMathInElement){
+    renderMathInElement(el, {
+      delimiters: [
+        {left: "$$", right: "$$", display: true},
+        {left: "\\(", right: "\\)", display: false},
+      ]
+    });
+  }
+}
+
+document.addEventListener("keydown", (e) => {
+  if(e.key !== "Escape") return;
+  const openAnswers = document.querySelectorAll(".answer-wrap.open");
+  if(openAnswers.length){
+    openAnswers.forEach(wrap => {
+      wrap.classList.remove("open");
+      const btn = document.querySelector(`[data-target="${wrap.id}"]`);
+      if(btn){ btn.classList.remove("open"); btn.textContent = "Show worked solution"; }
+    });
+  } else {
+    document.getElementById("content").scrollIntoView({behavior:"smooth", block:"start"});
+  }
+});
+
+buildNav();
+renderLanding();
+updateProgress();
+</script>
+
+</body>
+</html>
