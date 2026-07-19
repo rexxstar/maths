@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MATHS</title>
+<title>Proof &amp; Paper — A-Level Maths Walkthrough</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -462,18 +462,18 @@ const COURSE = {
       {
         title: "Statistics",
         topics: [
-          {id:"data-pres", name:"Data Presentation", status:"soon", blurb:"Histograms, box plots, measures of spread."},
-          {id:"probability", name:"Probability", status:"soon", blurb:"Venn diagrams, tree diagrams, conditional probability."},
-          {id:"distributions", name:"Statistical Distributions", status:"soon", blurb:"Binomial distribution and its uses."},
-          {id:"hyp-testing", name:"Hypothesis Testing", status:"soon", blurb:"Testing a claim about a population parameter."},
+          {id:"data-pres", name:"Data Presentation", status:"full", blurb:"Histograms, box plots, measures of spread."},
+          {id:"probability", name:"Probability", status:"full", blurb:"Venn diagrams, tree diagrams, conditional probability."},
+          {id:"distributions", name:"Statistical Distributions", status:"full", blurb:"Binomial distribution and its uses."},
+          {id:"hyp-testing", name:"Hypothesis Testing", status:"full", blurb:"Testing a claim about a population parameter."},
         ]
       },
       {
         title: "Mechanics",
         topics: [
-          {id:"kinematics", name:"Kinematics", status:"soon", blurb:"suvat equations, motion graphs."},
-          {id:"forces", name:"Forces & Newton's Laws", status:"soon", blurb:"Resolving forces, F = ma, connected particles."},
-          {id:"moments", name:"Moments", status:"soon", blurb:"Turning effects of forces, equilibrium of rigid bodies."},
+          {id:"kinematics", name:"Kinematics", status:"full", blurb:"suvat equations, motion graphs."},
+          {id:"forces", name:"Forces & Newton's Laws", status:"full", blurb:"Resolving forces, F = ma, connected particles."},
+          {id:"moments", name:"Moments", status:"full", blurb:"Turning effects of forces, equilibrium of rigid bodies."},
         ]
       }
     ]
@@ -486,26 +486,26 @@ const COURSE = {
         title: "Further Pure",
         topics: [
           {id:"complex", name:"Complex Numbers", status:"full", blurb:"i, arithmetic, conjugates, Argand diagrams, modulus-argument form."},
-          {id:"matrices", name:"Matrices", status:"soon", blurb:"Matrix arithmetic, determinants, transformations."},
-          {id:"further-alg", name:"Further Algebra & Functions", status:"soon", blurb:"Roots of polynomials, partial fractions."},
-          {id:"further-calc", name:"Further Calculus", status:"soon", blurb:"Maclaurin series, further differentiation & integration."},
-          {id:"polar", name:"Polar Coordinates", status:"soon", blurb:"Curves defined by r = f(θ)."},
-          {id:"hyperbolic", name:"Hyperbolic Functions", status:"soon", blurb:"sinh, cosh, tanh and their identities."},
-          {id:"diff-eq", name:"Differential Equations", status:"soon", blurb:"First and second order differential equations."},
+          {id:"matrices", name:"Matrices", status:"full", blurb:"Matrix arithmetic, determinants, transformations."},
+          {id:"further-alg", name:"Further Algebra & Functions", status:"full", blurb:"Roots of polynomials, partial fractions."},
+          {id:"further-calc", name:"Further Calculus", status:"full", blurb:"Maclaurin series, further differentiation & integration."},
+          {id:"polar", name:"Polar Coordinates", status:"full", blurb:"Curves defined by r = f(θ)."},
+          {id:"hyperbolic", name:"Hyperbolic Functions", status:"full", blurb:"sinh, cosh, tanh and their identities."},
+          {id:"diff-eq", name:"Differential Equations", status:"full", blurb:"First and second order differential equations."},
         ]
       },
       {
         title: "Further Statistics",
         topics: [
-          {id:"discrete-prob", name:"Discrete Probability Distributions", status:"soon", blurb:"Expectation and variance of discrete random variables."},
-          {id:"poisson", name:"Poisson & Binomial", status:"soon", blurb:"The Poisson distribution and its applications."},
+          {id:"discrete-prob", name:"Discrete Probability Distributions", status:"full", blurb:"Expectation and variance of discrete random variables."},
+          {id:"poisson", name:"Poisson & Binomial", status:"full", blurb:"The Poisson distribution and its applications."},
         ]
       },
       {
         title: "Further Mechanics",
         topics: [
-          {id:"momentum", name:"Momentum & Impulse", status:"soon", blurb:"Conservation of momentum, collisions."},
-          {id:"circular", name:"Circular Motion", status:"soon", blurb:"Motion in a horizontal and vertical circle."},
+          {id:"momentum", name:"Momentum & Impulse", status:"full", blurb:"Conservation of momentum, collisions."},
+          {id:"circular", name:"Circular Motion", status:"full", blurb:"Motion in a horizontal and vertical circle."},
         ]
       }
     ]
@@ -1594,6 +1594,1149 @@ const CHAPTERS = {
           "\\(= 10 \\times 4 \\times x^3\\)"
         ],
         final:"40"
+      },
+    ]
+  },
+
+  "data-pres": {
+    subjectKey:"maths",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="10" y1="45" x2="115" y2="45" stroke="#cfc4a4" stroke-width="1"/>
+      <rect x="30" y="35" width="55" height="20" stroke="#132821" stroke-width="2" fill="none"/>
+      <line x1="55" y1="35" x2="55" y2="55" stroke="#132821" stroke-width="2"/>
+      <line x1="10" y1="45" x2="30" y2="45" stroke="#132821" stroke-width="2"/>
+      <line x1="85" y1="45" x2="108" y2="45" stroke="#132821" stroke-width="2"/>
+      <line x1="10" y1="38" x2="10" y2="52" stroke="#D8A93B" stroke-width="2"/>
+      <line x1="108" y1="38" x2="108" y2="52" stroke="#D8A93B" stroke-width="2"/>
+    </svg>`,
+    title:"Data Presentation",
+    dek:"Summarising a data set with a single number — location, spread, and how to spot outliers.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> Measures of central tendency</h2>
+      <p>The <strong>mean</strong> is the total divided by the number of values, \\(\\bar x = \\dfrac{\\sum x}{n}\\). The <strong>median</strong> is the middle value once the data is ordered. The <strong>mode</strong> is the most frequently occurring value.</p>
+
+      <h2 class="section-title"><span class="num">02</span> Quartiles and the interquartile range</h2>
+      <p>Quartiles split ordered data into four equal parts. \\(Q_1\\) is the median of the lower half, \\(Q_3\\) is the median of the upper half, and the interquartile range measures the spread of the "middle" 50% of the data, largely unaffected by outliers:</p>
+      <p>$$IQR = Q_3 - Q_1$$</p>
+      <div class="chalk">
+        <p>Find the median and IQR of \\(1, 3, 4, 6, 7, 9, 10, 12, 15, 18\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>10 values, so the median is the average of the 5th and 6th: \\(\\dfrac{7+9}{2}=8\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>Lower half \\(1,3,4,6,7\\): \\(Q_1=4\\). Upper half \\(9,10,12,15,18\\): \\(Q_3=12\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(IQR = 12-4 = 8\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">03</span> Variance and standard deviation</h2>
+      <p>These measure spread around the mean directly. The variance is the mean of the squared deviations from the mean; the standard deviation is its square root, back in the original units:</p>
+      <p>$$\\text{Variance} = \\frac{\\sum(x-\\bar x)^2}{n} \\qquad \\text{Standard deviation} = \\sqrt{\\text{Variance}}$$</p>
+      <div class="chalk">
+        <p>Find the variance and standard deviation of \\(2, 4, 6, 8, 10\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>Mean: \\(\\bar x = 6\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>Deviations: \\(-4,-2,0,2,4\\); squared: \\(16,4,0,4,16\\), sum \\(=40\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>Variance \\(= 40/5 = 8\\); standard deviation \\(=\\sqrt8 \\approx 2.83\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">04</span> Box plots and outliers</h2>
+      <p>A box plot displays the minimum, \\(Q_1\\), median, \\(Q_3\\), and maximum in one picture. An outlier is often flagged as any value more than \\(1.5 \\times IQR\\) beyond \\(Q_1\\) or \\(Q_3\\).</p>
+
+      <h2 class="section-title"><span class="num">05</span> Histograms</h2>
+      <p>Unlike a bar chart, a histogram's bars represent <strong>frequency density</strong>, not raw frequency — this matters when class widths differ:</p>
+      <p>$$\\text{Frequency density} = \\frac{\\text{frequency}}{\\text{class width}}$$</p>
+    `,
+    practice:[
+      {
+        q:"Find the mean of \\(3, 5, 5, 8, 9, 12, 14\\).",
+        steps:[
+          "Sum \\(= 3+5+5+8+9+12+14 = 56\\)",
+          "Divide by \\(n=7\\)"
+        ],
+        final:"8"
+      },
+      {
+        q:"Find the median and interquartile range of \\(1, 3, 4, 6, 7, 9, 10, 12, 15, 18\\).",
+        steps:[
+          "10 values: median \\(= (7+9)/2 = 8\\)",
+          "Lower half gives \\(Q_1=4\\), upper half gives \\(Q_3=12\\)",
+          "\\(IQR = 12-4\\)"
+        ],
+        final:"Median = 8, IQR = 8"
+      },
+      {
+        q:"A set of data has variance 25. State its standard deviation.",
+        steps:[
+          "Standard deviation is the square root of the variance: \\(\\sqrt{25}\\)"
+        ],
+        final:"5"
+      },
+      {
+        q:"Find the variance of \\(5, 10, 15\\).",
+        steps:[
+          "Mean \\(= 10\\)",
+          "Deviations: \\(-5, 0, 5\\); squared: \\(25, 0, 25\\); sum \\(=50\\)",
+          "Variance \\(= 50/3\\)"
+        ],
+        final:"≈16.7"
+      },
+    ]
+  },
+
+  probability: {
+    subjectKey:"maths",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="48" cy="45" r="28" stroke="#132821" stroke-width="2" fill="none"/>
+      <circle cx="74" cy="45" r="28" stroke="#D8A93B" stroke-width="2" fill="none"/>
+    </svg>`,
+    title:"Probability",
+    dek:"Venn diagrams, tree diagrams, and calculating the likelihood of combined events.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> Basic probability</h2>
+      <p>For equally likely outcomes, \\(P(A) = \\dfrac{\\text{number of favourable outcomes}}{\\text{total number of outcomes}}\\). Probabilities always lie between 0 and 1, and the probabilities of all possible outcomes sum to 1.</p>
+
+      <h2 class="section-title"><span class="num">02</span> Venn diagrams and the addition rule</h2>
+      <p>For any two events:</p>
+      <p>$$P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$$</p>
+      <p>The \\(-P(A\\cap B)\\) correction stops you double-counting outcomes that satisfy both events.</p>
+      <div class="chalk">
+        <p>In a class of 30, 18 study French, 15 study Spanish, and 8 study both. Find the probability a random student studies French or Spanish.</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(P(F\\cup S) = 18+15-8 = 25\\) students out of 30</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(= \\dfrac{25}{30} = \\dfrac56\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">03</span> Tree diagrams</h2>
+      <p>Tree diagrams are useful for sequences of events. Multiply probabilities <em>along</em> a branch, and add probabilities <em>across</em> different branches that lead to the same outcome. When drawing without replacement, remember the probabilities change after each draw.</p>
+      <div class="chalk">
+        <p>A bag has 5 red and 3 blue balls. Two are drawn without replacement. Find \\(P(\\text{both red})\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(P(\\text{1st red}) = \\dfrac58\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>Given the first was red, \\(P(\\text{2nd red}) = \\dfrac47\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(P(\\text{both red}) = \\dfrac58 \\times \\dfrac47 = \\dfrac{20}{56} = \\dfrac{5}{14}\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">04</span> Conditional probability</h2>
+      <p>\\(P(A|B)\\) is the probability of \\(A\\), given that \\(B\\) has already happened:</p>
+      <p>$$P(A|B) = \\frac{P(A \\cap B)}{P(B)}$$</p>
+      <div class="callout">Events \\(A\\) and \\(B\\) are <strong>independent</strong> if \\(P(A|B)=P(A)\\), equivalently \\(P(A\\cap B) = P(A)\\times P(B)\\). They're <strong>mutually exclusive</strong> if they can't happen together, so \\(P(A\\cap B)=0\\).</div>
+    `,
+    practice:[
+      {
+        q:"In a survey of 50 people, 28 like tea, 20 like coffee, and 10 like both. Find the probability a randomly chosen person likes tea or coffee.",
+        steps:[
+          "\\(P(T\\cup C) = 28+20-10 = 38\\) out of 50"
+        ],
+        final:"38/50 = 19/25"
+      },
+      {
+        q:"A bag contains 4 red and 6 blue counters. Two are drawn without replacement. Find \\(P(\\text{both blue})\\).",
+        steps:[
+          "\\(P(\\text{1st blue}) = \\dfrac{6}{10}\\)",
+          "\\(P(\\text{2nd blue} \\mid \\text{1st blue}) = \\dfrac{5}{9}\\)",
+          "\\(P(\\text{both}) = \\dfrac{6}{10}\\times\\dfrac{5}{9} = \\dfrac{30}{90}\\)"
+        ],
+        final:"1/3"
+      },
+      {
+        q:"Given \\(P(A)=0.3\\), \\(P(B)=0.6\\), \\(P(A\\cap B)=0.18\\), determine whether A and B are independent.",
+        steps:[
+          "Test: \\(P(A)\\times P(B) = 0.3\\times0.6 = 0.18\\)",
+          "This matches the given \\(P(A\\cap B)\\)"
+        ],
+        final:"Yes, A and B are independent"
+      },
+      {
+        q:"Given \\(P(A)=0.5\\), \\(P(B)=0.4\\), \\(P(A\\cap B)=0.2\\), find \\(P(A|B)\\).",
+        steps:[
+          "\\(P(A|B) = \\dfrac{P(A\\cap B)}{P(B)} = \\dfrac{0.2}{0.4}\\)"
+        ],
+        final:"0.5"
+      },
+    ]
+  },
+
+  distributions: {
+    subjectKey:"maths",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="10" y1="78" x2="115" y2="78" stroke="#cfc4a4" stroke-width="1"/>
+      <rect x="20" y="55" width="12" height="23" fill="#132821"/>
+      <rect x="38" y="35" width="12" height="43" fill="#132821"/>
+      <rect x="56" y="18" width="12" height="60" fill="#D8A93B"/>
+      <rect x="74" y="40" width="12" height="38" fill="#132821"/>
+      <rect x="92" y="62" width="12" height="16" fill="#132821"/>
+    </svg>`,
+    title:"Statistical Distributions",
+    dek:"The binomial distribution: modelling a fixed number of yes/no trials.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> When to use the binomial distribution</h2>
+      <p>A random variable follows a binomial distribution, written \\(X \\sim B(n,p)\\), when four conditions hold: a <strong>fixed number</strong> \\(n\\) of trials, each trial has only <strong>two outcomes</strong> (success/failure), the probability of success \\(p\\) is <strong>constant</strong>, and the trials are <strong>independent</strong>.</p>
+
+      <h2 class="section-title"><span class="num">02</span> The binomial probability formula</h2>
+      <p>$$P(X=r) = \\binom{n}{r}p^r(1-p)^{n-r}$$</p>
+      <div class="chalk">
+        <p>\\(X \\sim B(10, 0.3)\\). Find \\(P(X=3)\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(P(X=3) = \\binom{10}{3}(0.3)^3(0.7)^7\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(= 120 \\times 0.027 \\times 0.0823543\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(\\approx 0.267\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">03</span> Mean and variance</h2>
+      <p>For \\(X \\sim B(n,p)\\), there's no need to sum anything term by term — the mean and variance have simple closed forms:</p>
+      <p>$$E(X) = np \\qquad \\text{Var}(X) = np(1-p)$$</p>
+      <div class="chalk">
+        <p>\\(X \\sim B(20, 0.25)\\). Find \\(E(X)\\) and \\(\\text{Var}(X)\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(E(X) = 20 \\times 0.25 = 5\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(\\text{Var}(X) = 20 \\times 0.25 \\times 0.75 = 3.75\\)</span></div>
+      </div>
+    `,
+    practice:[
+      {
+        q:"\\(X \\sim B(8, 0.5)\\). Find \\(P(X=4)\\).",
+        steps:[
+          "\\(P(X=4) = \\binom{8}{4}(0.5)^4(0.5)^4 = 70 \\times (0.5)^8\\)",
+          "\\((0.5)^8 = 0.00390625\\)"
+        ],
+        final:"≈0.273"
+      },
+      {
+        q:"\\(X \\sim B(15, 0.2)\\). Find the mean and variance of X.",
+        steps:[
+          "\\(E(X) = 15 \\times 0.2 = 3\\)",
+          "\\(\\text{Var}(X) = 15 \\times 0.2 \\times 0.8\\)"
+        ],
+        final:"Mean = 3, Variance = 2.4"
+      },
+      {
+        q:"A biased coin has \\(P(\\text{heads})=0.6\\). It is flipped 5 times. Find the probability of exactly 3 heads.",
+        steps:[
+          "\\(X \\sim B(5,0.6)\\)",
+          "\\(P(X=3) = \\binom{5}{3}(0.6)^3(0.4)^2 = 10 \\times 0.216 \\times 0.16\\)"
+        ],
+        final:"≈0.346"
+      },
+      {
+        q:"\\(X \\sim B(12, 0.25)\\). Find \\(P(X=0)\\).",
+        steps:[
+          "\\(P(X=0) = \\binom{12}{0}(0.25)^0(0.75)^{12} = (0.75)^{12}\\)"
+        ],
+        final:"≈0.0317"
+      },
+    ]
+  },
+
+  "hyp-testing": {
+    subjectKey:"maths",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="10" y1="78" x2="115" y2="78" stroke="#cfc4a4" stroke-width="1"/>
+      <path d="M15 76 C 40 76, 45 18, 62 18 C 79 18, 84 76, 110 76" stroke="#132821" stroke-width="2" fill="none"/>
+      <path d="M92 76 C 96 60, 100 40, 110 76 Z" fill="#D8A93B" opacity="0.5"/>
+    </svg>`,
+    title:"Hypothesis Testing",
+    dek:"Using sample data to test a claim about a population, with the binomial distribution as the model.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> Setting up the hypotheses</h2>
+      <p>Every hypothesis test starts with two statements about a population parameter \\(p\\): the <strong>null hypothesis</strong> \\(H_0\\), which is assumed true unless there's strong evidence otherwise, and the <strong>alternative hypothesis</strong> \\(H_1\\), the claim being tested for.</p>
+      <div class="callout">
+        One-tailed test: \\(H_1: p > p_0\\) or \\(H_1: p < p_0\\) — testing for change in a specific direction. &nbsp;
+        Two-tailed test: \\(H_1: p \\neq p_0\\) — testing for any change.
+      </div>
+
+      <h2 class="section-title"><span class="num">02</span> Testing using the binomial distribution</h2>
+      <p>Assuming \\(H_0\\) is true, model the data with \\(X \\sim B(n, p_0)\\), then find the probability of a result <em>at least as extreme</em> as the one observed. Compare this to the significance level.</p>
+      <div class="chalk">
+        <p>A machine is claimed to produce defective items with probability 0.3. Out of 10 items tested, 7 are defective. Test at the 5% significance level whether the true proportion is greater than 0.3.</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(H_0: p=0.3\\), \\(H_1: p>0.3\\). Under \\(H_0\\), \\(X\\sim B(10,0.3)\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>Find \\(P(X\\ge7) = P(X{=}7)+P(X{=}8)+P(X{=}9)+P(X{=}10)\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(\\approx 0.0090+0.0014+0.0001+0.00001 \\approx 0.0106\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>Since \\(0.0106 < 0.05\\), reject \\(H_0\\): there's significant evidence \\(p>0.3\\).</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">03</span> Making a decision</h2>
+      <p>If the calculated probability (the "p-value") is <strong>less than</strong> the significance level, reject \\(H_0\\) in favour of \\(H_1\\) — the result is unlikely enough under \\(H_0\\) to doubt it. Otherwise, there isn't enough evidence to reject \\(H_0\\).</p>
+    `,
+    practice:[
+      {
+        q:"A coin is suspected to be biased towards landing heads. State suitable null and alternative hypotheses in terms of \\(p\\), the probability of heads.",
+        steps:[
+          "A fair coin has \\(p=0.5\\); the suspicion is that heads is more likely than that."
+        ],
+        final:"H₀: p = 0.5, H₁: p > 0.5"
+      },
+      {
+        q:"Under \\(H_0: X\\sim B(10, 0.5)\\), find \\(P(X\\ge8)\\).",
+        steps:[
+          "\\(P(X=8)=\\binom{10}{8}(0.5)^{10} = 45/1024\\)",
+          "\\(P(X=9)=\\binom{10}{9}(0.5)^{10} = 10/1024\\), \\(P(X=10) = 1/1024\\)",
+          "Sum \\(= 56/1024\\)"
+        ],
+        final:"≈0.0547"
+      },
+      {
+        q:"A test uses a 5% significance level, and the calculated probability is 0.0547. What conclusion should be drawn?",
+        steps:[
+          "Compare to the significance level: \\(0.0547 > 0.05\\)"
+        ],
+        final:"Do not reject H₀ — insufficient evidence of a change"
+      },
+      {
+        q:"Explain the difference between a one-tailed and a two-tailed hypothesis test.",
+        steps:[
+          "A one-tailed test only looks for a change in one specified direction (\\(p>p_0\\) or \\(p<p_0\\)).",
+          "A two-tailed test looks for a change in either direction (\\(p \\neq p_0\\)), splitting the significance level across both tails."
+        ],
+        final:"One-tailed tests a specific direction of change; two-tailed tests any change"
+      },
+    ]
+  },
+
+  kinematics: {
+    subjectKey:"maths",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="10" y1="78" x2="115" y2="78" stroke="#cfc4a4" stroke-width="1"/>
+      <line x1="18" y1="8" x2="18" y2="85" stroke="#cfc4a4" stroke-width="1"/>
+      <path d="M20 76 L60 40 L105 15" stroke="#D8A93B" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <path d="M105 15 L94 17 M105 15 L100 26" stroke="#D8A93B" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    </svg>`,
+    title:"Kinematics",
+    dek:"Describing motion in a straight line with the five suvat equations.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> The suvat variables</h2>
+      <p>Motion in a straight line with constant acceleration is described by five quantities: \\(s\\) (displacement), \\(u\\) (initial velocity), \\(v\\) (final velocity), \\(a\\) (acceleration), and \\(t\\) (time).</p>
+
+      <h2 class="section-title"><span class="num">02</span> The suvat equations</h2>
+      <p>Each equation links four of the five variables — pick the one that skips whichever quantity you don't know:</p>
+      <p>$$v = u+at \\qquad s = ut+\\tfrac12at^2 \\qquad v^2=u^2+2as \\qquad s=\\tfrac12(u+v)t$$</p>
+      <div class="chalk">
+        <p>A car accelerates from rest at \\(2\\ \\text{m/s}^2\\) for 8 seconds. Find its final velocity and the distance travelled.</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(v = u+at = 0 + 2(8) = 16\\ \\text{m/s}\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(s = ut+\\tfrac12at^2 = 0 + \\tfrac12(2)(64) = 64\\ \\text{m}\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">03</span> Motion under gravity</h2>
+      <p>Vertical motion under gravity is just a suvat problem with \\(a=-g\\) (taking upward as positive), typically \\(g \\approx 9.8\\ \\text{m/s}^2\\). At the highest point of a vertical throw, \\(v=0\\).</p>
+      <div class="chalk">
+        <p>A ball is thrown upward at 20 m/s. Find the time taken to reach maximum height, and the maximum height itself.</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>At max height, \\(v=0\\): \\(0 = 20 - 9.8t \\Rightarrow t \\approx 2.04\\ \\text{s}\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(v^2=u^2+2as \\Rightarrow 0 = 400 - 2(9.8)s \\Rightarrow s \\approx 20.4\\ \\text{m}\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">04</span> Motion graphs</h2>
+      <p>On a velocity-time graph, the <strong>gradient</strong> gives acceleration, and the <strong>area under the graph</strong> gives displacement.</p>
+    `,
+    practice:[
+      {
+        q:"A particle starts at rest and accelerates uniformly at \\(3\\ \\text{m/s}^2\\) for 5 seconds. Find its final velocity.",
+        steps:[
+          "\\(v = u+at = 0+3(5)\\)"
+        ],
+        final:"15 m/s"
+      },
+      {
+        q:"A car travelling at 25 m/s decelerates uniformly at \\(4\\ \\text{m/s}^2\\) until it stops. Find the distance travelled.",
+        steps:[
+          "\\(v^2 = u^2+2as \\Rightarrow 0 = 625 - 8s\\)"
+        ],
+        final:"78.125 m"
+      },
+      {
+        q:"A ball is thrown vertically upward at 15 m/s. Taking \\(g=9.8\\ \\text{m/s}^2\\), find the maximum height reached.",
+        steps:[
+          "At maximum height \\(v=0\\): \\(0=u^2-2gs \\Rightarrow s = \\dfrac{u^2}{2g} = \\dfrac{225}{19.6}\\)"
+        ],
+        final:"≈11.5 m"
+      },
+      {
+        q:"A particle has initial velocity 4 m/s and acceleration \\(1.5\\ \\text{m/s}^2\\) for 6 seconds. Find its displacement.",
+        steps:[
+          "\\(s = ut+\\tfrac12at^2 = 4(6) + \\tfrac12(1.5)(36) = 24+27\\)"
+        ],
+        final:"51 m"
+      },
+    ]
+  },
+
+  forces: {
+    subjectKey:"maths",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="45" y="35" width="30" height="24" stroke="#132821" stroke-width="2" fill="none"/>
+      <line x1="45" y1="47" x2="15" y2="47" stroke="#D8A93B" stroke-width="2.5"/>
+      <path d="M15 47 L24 42 M15 47 L24 52" stroke="#D8A93B" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+      <line x1="75" y1="47" x2="105" y2="47" stroke="#132821" stroke-width="2"/>
+      <path d="M105 47 L96 42 M105 47 L96 52" stroke="#132821" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </svg>`,
+    title:"Forces & Newton's Laws",
+    dek:"Newton's laws of motion, and how to find acceleration and tension in connected systems.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> Newton's three laws</h2>
+      <div class="callout">
+        <strong>First law:</strong> an object stays at rest or moving at constant velocity unless acted on by a resultant force. &nbsp;
+        <strong>Second law:</strong> \\(F = ma\\). &nbsp;
+        <strong>Third law:</strong> every force has an equal and opposite reaction force.
+      </div>
+
+      <h2 class="section-title"><span class="num">02</span> Resultant force</h2>
+      <p>When several forces act on an object, combine them into a single resultant force before applying \\(F=ma\\). An object's weight is the force of gravity on its mass: \\(W = mg\\).</p>
+      <div class="chalk">
+        <p>A resultant force of 20 N acts on a 5 kg mass. Find its acceleration.</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(a = F/m = 20/5\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(= 4\\ \\text{m/s}^2\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">03</span> Connected particles</h2>
+      <p>For two masses connected by a string over a pulley, treat the system as a whole to find acceleration, then isolate one mass to find the tension.</p>
+      <div class="chalk">
+        <p>Masses of 3 kg and 5 kg are connected by a string over a smooth pulley. Find the acceleration and the tension (\\(g=9.8\\)).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>Driving force \\(= (5-3)g = 19.6\\ \\text N\\); total mass \\(=8\\ \\text{kg}\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(a = 19.6/8 = 2.45\\ \\text{m/s}^2\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>For the 3 kg mass: \\(T - 3g = 3a \\Rightarrow T = 3(9.8+2.45) = 36.75\\ \\text N\\)</span></div>
+      </div>
+    `,
+    practice:[
+      {
+        q:"A resultant force of 30 N acts on a mass of 6 kg. Find the acceleration produced.",
+        steps:[
+          "\\(a = F/m = 30/6\\)"
+        ],
+        final:"5 m/s²"
+      },
+      {
+        q:"A block of mass 4 kg rests on a smooth horizontal surface. A horizontal force of 12 N is applied. Find its acceleration.",
+        steps:[
+          "\\(a = F/m = 12/4\\)"
+        ],
+        final:"3 m/s²"
+      },
+      {
+        q:"Find the weight of a 12 kg object, taking \\(g=9.8\\ \\text{m/s}^2\\).",
+        steps:[
+          "\\(W = mg = 12 \\times 9.8\\)"
+        ],
+        final:"117.6 N"
+      },
+      {
+        q:"Masses of 4 kg and 6 kg are connected by a string over a smooth pulley. Find the acceleration of the system and the tension in the string (\\(g=9.8\\)).",
+        steps:[
+          "Driving force \\(=(6-4)g = 19.6\\ \\text N\\); total mass \\(=10\\ \\text{kg}\\), so \\(a = 1.96\\ \\text{m/s}^2\\)",
+          "For the 4 kg mass: \\(T - 4g = 4a \\Rightarrow T = 4(9.8+1.96)\\)"
+        ],
+        final:"a = 1.96 m/s², T = 47.04 N"
+      },
+    ]
+  },
+
+  moments: {
+    subjectKey:"maths",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="12" y1="50" x2="108" y2="35" stroke="#132821" stroke-width="3" stroke-linecap="round"/>
+      <path d="M60 55 L52 68 L68 68 Z" fill="#D8A93B"/>
+    </svg>`,
+    title:"Moments",
+    dek:"The turning effect of a force, and balancing rigid bodies in equilibrium.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> Moment of a force</h2>
+      <p>A moment measures the turning effect of a force about a pivot:</p>
+      <p>$$\\text{Moment} = \\text{Force} \\times \\text{perpendicular distance from the pivot}$$</p>
+      <p>Moments are measured in newton-metres (Nm), and are conventionally taken as positive in one rotational direction (say, clockwise) and negative in the other.</p>
+
+      <h2 class="section-title"><span class="num">02</span> Equilibrium of a rigid body</h2>
+      <p>A rigid body in equilibrium satisfies two conditions at once: the resultant force is zero, <em>and</em> the sum of clockwise moments equals the sum of anticlockwise moments about any chosen point.</p>
+      <div class="chalk">
+        <p>A uniform rod of length 4 m and weight 20 N is pivoted at one end and held horizontal by a force \\(F\\) applied perpendicular to the rod at the other end. Find \\(F\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>A uniform rod's weight acts at its midpoint — 2 m from the pivot here.</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>Taking moments about the pivot: \\(F \\times 4 = 20 \\times 2\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(F = 10\\ \\text N\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">03</span> Non-uniform rods</h2>
+      <p>For a non-uniform rod, the weight doesn't act at the midpoint — its centre of mass has to be given or found separately, then treated the same way as any other force in the moments equation.</p>
+    `,
+    practice:[
+      {
+        q:"A force of 15 N is applied perpendicular to a spanner at a distance of 0.3 m from the pivot. Find the moment.",
+        steps:[
+          "\\(\\text{Moment} = 15 \\times 0.3\\)"
+        ],
+        final:"4.5 Nm"
+      },
+      {
+        q:"A uniform beam of length 6 m and weight 40 N is pivoted at its centre. A 25 N weight is placed 2 m from the pivot on one side. How far from the pivot must a 20 N weight be placed on the other side to balance the beam?",
+        steps:[
+          "The beam's own weight acts at the pivot, so it creates no moment.",
+          "Balance the two placed weights: \\(25 \\times 2 = 20 \\times d\\)"
+        ],
+        final:"d = 2.5 m"
+      },
+      {
+        q:"A uniform rod AB of length 5 m and weight 30 N rests horizontally on supports at A and B. Find the reaction at each support.",
+        steps:[
+          "The weight acts at the midpoint, 2.5 m from A. Taking moments about A: \\(R_B \\times 5 = 30 \\times 2.5\\)",
+          "\\(R_B = 15\\ \\text N\\), and since \\(R_A+R_B=30\\), \\(R_A=15\\ \\text N\\)"
+        ],
+        final:"R_A = 15 N, R_B = 15 N"
+      },
+      {
+        q:"A non-uniform rod of length 8 m and weight 50 N has its centre of mass 3 m from end A. It rests horizontally on supports at A and B. Find the reaction at each support.",
+        steps:[
+          "Taking moments about A: \\(R_B \\times 8 = 50 \\times 3\\)",
+          "\\(R_B = 18.75\\ \\text N\\), and \\(R_A = 50-18.75\\)"
+        ],
+        final:"R_A = 31.25 N, R_B = 18.75 N"
+      },
+    ]
+  },
+
+  matrices: {
+    subjectKey:"further",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M25 15 L15 15 L15 75 L25 75" stroke="#132821" stroke-width="2" fill="none"/>
+      <path d="M95 15 L105 15 L105 75 L95 75" stroke="#132821" stroke-width="2" fill="none"/>
+      <text x="38" y="38" font-family="IBM Plex Mono" font-size="15" fill="#132821">2</text>
+      <text x="65" y="38" font-family="IBM Plex Mono" font-size="15" fill="#3E8E7E">0</text>
+      <text x="38" y="62" font-family="IBM Plex Mono" font-size="15" fill="#3E8E7E">1</text>
+      <text x="65" y="62" font-family="IBM Plex Mono" font-size="15" fill="#132821">3</text>
+    </svg>`,
+    title:"Matrices",
+    dek:"Arrays of numbers that add, multiply, and represent transformations of the plane.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> What is a matrix?</h2>
+      <p>A matrix is a rectangular array of numbers, described by its <strong>order</strong> — the number of rows by the number of columns. A \\(2\\times2\\) matrix has 2 rows and 2 columns.</p>
+
+      <h2 class="section-title"><span class="num">02</span> Addition and multiplication</h2>
+      <p>Matrices of the <em>same order</em> add and subtract entry by entry. Matrix multiplication is different: to multiply two matrices, the number of columns in the first must match the number of rows in the second, and each entry of the result is a row of the first "dotted" with a column of the second.</p>
+      <div class="chalk">
+        <p>Multiply \\(\\begin{pmatrix}1&2\\\\3&4\\end{pmatrix}\\begin{pmatrix}2&0\\\\1&3\\end{pmatrix}\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>Top row: \\((1{\\times}2+2{\\times}1,\\ 1{\\times}0+2{\\times}3) = (4,6)\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>Bottom row: \\((3{\\times}2+4{\\times}1,\\ 3{\\times}0+4{\\times}3) = (10,12)\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>Result: \\(\\begin{pmatrix}4&6\\\\10&12\\end{pmatrix}\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">03</span> Determinant and inverse</h2>
+      <p>For a \\(2\\times2\\) matrix \\(A = \\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}\\):</p>
+      <p>$$\\det(A) = ad-bc \\qquad A^{-1} = \\frac{1}{ad-bc}\\begin{pmatrix}d&-b\\\\-c&a\\end{pmatrix}$$</p>
+      <p>A matrix only has an inverse if its determinant is non-zero.</p>
+      <div class="chalk">
+        <p>Find the determinant and inverse of \\(\\begin{pmatrix}3&4\\\\2&5\\end{pmatrix}\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(\\det = 3(5)-4(2) = 15-8 = 7\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(A^{-1} = \\dfrac17\\begin{pmatrix}5&-4\\\\-2&3\\end{pmatrix}\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">04</span> Matrices as transformations</h2>
+      <p>A \\(2\\times2\\) matrix can represent a transformation of the plane: multiplying it by a position vector \\(\\begin{pmatrix}x\\\\y\\end{pmatrix}\\) gives the transformed point. Rotations, reflections, and enlargements each have a standard matrix form.</p>
+    `,
+    practice:[
+      {
+        q:"Find \\(A+B\\) where \\(A=\\begin{pmatrix}2&1\\\\0&3\\end{pmatrix}\\), \\(B=\\begin{pmatrix}1&4\\\\2&-1\\end{pmatrix}\\).",
+        steps:[
+          "Add entry by entry."
+        ],
+        final:"[[3, 5], [2, 2]]"
+      },
+      {
+        q:"Multiply \\(\\begin{pmatrix}2&0\\\\1&3\\end{pmatrix}\\begin{pmatrix}1&2\\\\0&1\\end{pmatrix}\\).",
+        steps:[
+          "Top row: \\((2{\\times}1+0{\\times}0,\\ 2{\\times}2+0{\\times}1) = (2,4)\\)",
+          "Bottom row: \\((1{\\times}1+3{\\times}0,\\ 1{\\times}2+3{\\times}1) = (1,5)\\)"
+        ],
+        final:"[[2, 4], [1, 5]]"
+      },
+      {
+        q:"Find the determinant of \\(\\begin{pmatrix}4&3\\\\2&5\\end{pmatrix}\\).",
+        steps:[
+          "\\(\\det = 4(5)-3(2) = 20-6\\)"
+        ],
+        final:"14"
+      },
+      {
+        q:"Find the inverse of \\(\\begin{pmatrix}2&1\\\\5&3\\end{pmatrix}\\).",
+        steps:[
+          "\\(\\det = 2(3)-1(5) = 1\\)",
+          "\\(A^{-1} = \\dfrac11\\begin{pmatrix}3&-1\\\\-5&2\\end{pmatrix}\\)"
+        ],
+        final:"[[3, −1], [−5, 2]]"
+      },
+    ]
+  },
+
+  "further-alg": {
+    subjectKey:"further",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <text x="15" y="38" font-family="IBM Plex Mono" font-size="18" fill="#132821">1</text>
+      <line x1="12" y1="45" x2="30" y2="45" stroke="#132821" stroke-width="2"/>
+      <text x="14" y="62" font-family="IBM Plex Mono" font-size="18" fill="#132821">x</text>
+      <text x="55" y="45" font-family="IBM Plex Mono" font-size="20" fill="#3E8E7E">=</text>
+      <text x="75" y="38" font-family="IBM Plex Mono" font-size="18" fill="#3E8E7E">A</text>
+      <line x1="72" y1="45" x2="90" y2="45" stroke="#3E8E7E" stroke-width="2"/>
+      <text x="74" y="62" font-family="IBM Plex Mono" font-size="18" fill="#3E8E7E">B</text>
+    </svg>`,
+    title:"Further Algebra & Functions",
+    dek:"Relationships between a polynomial's roots and coefficients, and splitting fractions apart.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> Roots and coefficients</h2>
+      <p>For a quadratic \\(ax^2+bx+c=0\\) with roots \\(\\alpha,\\beta\\):</p>
+      <p>$$\\alpha+\\beta = -\\frac{b}{a} \\qquad \\alpha\\beta = \\frac{c}{a}$$</p>
+      <p>These relationships let you find expressions like \\(\\alpha^2+\\beta^2\\) without ever solving for the roots individually — just use \\(\\alpha^2+\\beta^2=(\\alpha+\\beta)^2-2\\alpha\\beta\\).</p>
+      <div class="chalk">
+        <p>Find the sum and product of the roots of \\(2x^2-5x+3=0\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(\\alpha+\\beta = -\\dfrac{-5}{2} = \\dfrac52\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(\\alpha\\beta = \\dfrac{3}{2}\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">02</span> Partial fractions</h2>
+      <p>A fraction with a factorised denominator can be split into simpler pieces. For distinct linear factors:</p>
+      <p>$$\\frac{f(x)}{(x-p)(x-q)} = \\frac{A}{x-p} + \\frac{B}{x-q}$$</p>
+      <p>Find \\(A\\) and \\(B\\) by multiplying through and substituting convenient values of \\(x\\) — specifically the values that make each bracket zero.</p>
+      <div class="chalk">
+        <p>Express \\(\\dfrac{5x+1}{(x-1)(x+2)}\\) as partial fractions.</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(5x+1 = A(x+2)+B(x-1)\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>Let \\(x=1\\): \\(6 = 3A \\Rightarrow A=2\\). &nbsp; Let \\(x=-2\\): \\(-9=-3B \\Rightarrow B=3\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(\\dfrac{5x+1}{(x-1)(x+2)} = \\dfrac{2}{x-1} + \\dfrac{3}{x+2}\\)</span></div>
+      </div>
+    `,
+    practice:[
+      {
+        q:"Find the sum and product of the roots of \\(3x^2+7x-2=0\\).",
+        steps:[
+          "\\(\\alpha+\\beta = -\\dfrac{7}{3}\\)",
+          "\\(\\alpha\\beta = -\\dfrac{2}{3}\\)"
+        ],
+        final:"Sum = −7/3, Product = −2/3"
+      },
+      {
+        q:"Express \\(\\dfrac{3x+5}{(x+1)(x+3)}\\) as partial fractions.",
+        steps:[
+          "\\(3x+5 = A(x+3)+B(x+1)\\)",
+          "\\(x=-1\\): \\(2=2A \\Rightarrow A=1\\). &nbsp; \\(x=-3\\): \\(-4=-2B \\Rightarrow B=2\\)"
+        ],
+        final:"1/(x+1) + 2/(x+3)"
+      },
+      {
+        q:"If \\(\\alpha\\) and \\(\\beta\\) are the roots of \\(x^2-4x+1=0\\), find \\(\\alpha^2+\\beta^2\\).",
+        steps:[
+          "\\(\\alpha+\\beta=4\\), \\(\\alpha\\beta=1\\)",
+          "\\(\\alpha^2+\\beta^2 = (\\alpha+\\beta)^2-2\\alpha\\beta = 16-2\\)"
+        ],
+        final:"14"
+      },
+      {
+        q:"Express \\(\\dfrac{x+13}{(x-2)(x+1)}\\) as partial fractions.",
+        steps:[
+          "\\(x+13 = A(x+1)+B(x-2)\\)",
+          "\\(x=2\\): \\(15=3A \\Rightarrow A=5\\). &nbsp; \\(x=-1\\): \\(12=-3B \\Rightarrow B=-4\\)"
+        ],
+        final:"5/(x−2) − 4/(x+1)"
+      },
+    ]
+  },
+
+  "further-calc": {
+    subjectKey:"further",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <text x="10" y="55" font-family="Fraunces" font-size="34" fill="#132821">Σ</text>
+      <text x="50" y="40" font-family="IBM Plex Mono" font-size="14" fill="#3E8E7E">x</text>
+      <text x="60" y="34" font-family="IBM Plex Mono" font-size="10" fill="#3E8E7E">n</text>
+      <text x="80" y="40" font-family="IBM Plex Mono" font-size="14" fill="#3E8E7E">n!</text>
+    </svg>`,
+    title:"Further Calculus",
+    dek:"Maclaurin series expansions, and integration by parts.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> The Maclaurin series</h2>
+      <p>A Maclaurin series expresses a function as an infinite polynomial, built entirely from its derivatives at \\(x=0\\):</p>
+      <p>$$f(x) = f(0) + f'(0)x + \\frac{f''(0)}{2!}x^2 + \\frac{f'''(0)}{3!}x^3 + \\cdots$$</p>
+      <div class="chalk">
+        <p>Find the Maclaurin series for \\(e^x\\) up to the term in \\(x^3\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>Every derivative of \\(e^x\\) is \\(e^x\\), so \\(f(0)=f'(0)=f''(0)=f'''(0)=1\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(e^x \\approx 1 + x + \\dfrac{x^2}{2!} + \\dfrac{x^3}{3!} = 1+x+\\dfrac{x^2}{2}+\\dfrac{x^3}{6}\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">02</span> Integration by parts</h2>
+      <p>For a product of two functions where the power rule alone won't work:</p>
+      <p>$$\\int u \\, dv = uv - \\int v \\, du$$</p>
+      <p>Choose \\(u\\) to be the part that simplifies when differentiated (like \\(x\\)), and \\(dv\\) to be the part that's easy to integrate.</p>
+      <div class="chalk">
+        <p>Find \\(\\displaystyle\\int x e^x \\, dx\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>Let \\(u=x\\), \\(dv = e^x dx\\), so \\(du=dx\\), \\(v=e^x\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(= xe^x - \\displaystyle\\int e^x\\,dx = xe^x - e^x + c\\)</span></div>
+      </div>
+    `,
+    practice:[
+      {
+        q:"Find the Maclaurin series for \\(\\sin x\\) up to the term in \\(x^3\\).",
+        steps:[
+          "\\(f(0)=0,\\ f'(0)=\\cos0=1,\\ f''(0)=-\\sin0=0,\\ f'''(0)=-\\cos0=-1\\)",
+          "\\(\\sin x \\approx 0+x+0-\\dfrac{x^3}{3!}\\)"
+        ],
+        final:"x − x³/6"
+      },
+      {
+        q:"Find the Maclaurin series for \\(\\ln(1+x)\\) up to the term in \\(x^3\\).",
+        steps:[
+          "\\(f(0)=0,\\ f'(0)=1,\\ f''(0)=-1,\\ f'''(0)=2\\)",
+          "\\(\\ln(1+x) \\approx x - \\dfrac{x^2}{2!} + \\dfrac{2x^3}{3!}\\)"
+        ],
+        final:"x − x²/2 + x³/3"
+      },
+      {
+        q:"Use integration by parts to find \\(\\displaystyle\\int x\\cos x \\, dx\\).",
+        steps:[
+          "Let \\(u=x\\), \\(dv=\\cos x\\,dx\\), so \\(du=dx\\), \\(v=\\sin x\\)",
+          "\\(= x\\sin x - \\displaystyle\\int \\sin x\\,dx = x\\sin x + \\cos x + c\\)"
+        ],
+        final:"x sin x + cos x + c"
+      },
+      {
+        q:"Find the Maclaurin series for \\(e^{2x}\\) up to the term in \\(x^2\\).",
+        steps:[
+          "\\(f(0)=1,\\ f'(0)=2,\\ f''(0)=4\\)",
+          "\\(e^{2x} \\approx 1+2x+\\dfrac{4x^2}{2!}\\)"
+        ],
+        final:"1 + 2x + 2x²"
+      },
+    ]
+  },
+
+  polar: {
+    subjectKey:"further",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="45" r="4" fill="#132821"/>
+      <path d="M60 45 C 75 45, 85 25, 60 20 C 35 15, 30 55, 60 65 C 85 73, 95 50, 90 35" stroke="#3E8E7E" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </svg>`,
+    title:"Polar Coordinates",
+    dek:"Locating points by distance and angle from a fixed origin, instead of x and y.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> Polar vs Cartesian</h2>
+      <p>A polar coordinate \\((r,\\theta)\\) describes a point by its distance \\(r\\) from the origin (the pole) and the angle \\(\\theta\\) from a fixed direction. Converting between the two systems uses ordinary trigonometry:</p>
+      <p>$$x = r\\cos\\theta \\qquad y = r\\sin\\theta \\qquad r = \\sqrt{x^2+y^2} \\qquad \\theta = \\arctan\\!\\left(\\frac{y}{x}\\right)$$</p>
+      <div class="chalk">
+        <p>Convert \\((3,4)\\) to polar form.</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(r = \\sqrt{9+16} = 5\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(\\theta = \\arctan\\!\\left(\\dfrac43\\right) \\approx 53.1°\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">02</span> Sketching polar curves</h2>
+      <p>Some standard shapes: \\(r=a\\) is a circle of radius \\(a\\) centred at the origin; \\(r=a\\theta\\) is a spiral; \\(r=a(1+\\cos\\theta)\\) is a heart-shaped cardioid.</p>
+
+      <h2 class="section-title"><span class="num">03</span> Area enclosed by a polar curve</h2>
+      <p>$$\\text{Area} = \\frac12 \\int_\\alpha^\\beta r^2 \\, d\\theta$$</p>
+      <div class="chalk">
+        <p>Find the area enclosed by \\(r=4\\cos\\theta\\) for \\(-\\tfrac{\\pi}{2}\\le\\theta\\le\\tfrac{\\pi}{2}\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(\\text{Area} = \\dfrac12\\displaystyle\\int_{-\\pi/2}^{\\pi/2} 16\\cos^2\\theta \\, d\\theta = 8\\displaystyle\\int_{-\\pi/2}^{\\pi/2}\\cos^2\\theta\\,d\\theta\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>Using \\(\\cos^2\\theta=\\tfrac12(1+\\cos2\\theta)\\), the integral evaluates to \\(\\tfrac{\\pi}{2}\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(\\text{Area} = 8 \\times \\dfrac{\\pi}{2} = 4\\pi\\) — this matches a circle of radius 2, as expected.</span></div>
+      </div>
+    `,
+    practice:[
+      {
+        q:"Convert the Cartesian point \\((3,4)\\) into polar coordinates.",
+        steps:[
+          "\\(r = \\sqrt{3^2+4^2} = 5\\)",
+          "\\(\\theta = \\arctan(4/3) \\approx 53.1°\\)"
+        ],
+        final:"(5, 53.1°)"
+      },
+      {
+        q:"Convert the polar point \\((4, 60°)\\) into Cartesian coordinates.",
+        steps:[
+          "\\(x = 4\\cos60° = 4(0.5) = 2\\)",
+          "\\(y = 4\\sin60° = 4\\left(\\dfrac{\\sqrt3}{2}\\right) = 2\\sqrt3\\)"
+        ],
+        final:"(2, 2√3) ≈ (2, 3.46)"
+      },
+      {
+        q:"Find the area enclosed by \\(r=5\\) for \\(0\\le\\theta\\le2\\pi\\).",
+        steps:[
+          "\\(\\text{Area} = \\dfrac12\\displaystyle\\int_0^{2\\pi}25\\,d\\theta = \\dfrac12(25)(2\\pi)\\)"
+        ],
+        final:"25π"
+      },
+      {
+        q:"Find the area enclosed by \\(r=4\\cos\\theta\\) for \\(-\\tfrac{\\pi}{2}\\le\\theta\\le\\tfrac{\\pi}{2}\\).",
+        steps:[
+          "\\(\\text{Area} = 8\\displaystyle\\int_{-\\pi/2}^{\\pi/2}\\cos^2\\theta\\,d\\theta = 8\\times\\dfrac{\\pi}{2}\\)"
+        ],
+        final:"4π"
+      },
+    ]
+  },
+
+  hyperbolic: {
+    subjectKey:"further",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="10" y1="78" x2="115" y2="78" stroke="#cfc4a4" stroke-width="1"/>
+      <path d="M20 20 C 45 65, 75 65, 100 20" stroke="#3E8E7E" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    </svg>`,
+    title:"Hyperbolic Functions",
+    dek:"sinh, cosh, and tanh — exponential cousins of the familiar trig functions.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> Definitions</h2>
+      <p>Hyperbolic functions are built directly from \\(e^x\\):</p>
+      <p>$$\\sinh x = \\frac{e^x-e^{-x}}{2} \\qquad \\cosh x = \\frac{e^x+e^{-x}}{2} \\qquad \\tanh x = \\frac{\\sinh x}{\\cosh x}$$</p>
+
+      <h2 class="section-title"><span class="num">02</span> The core identity</h2>
+      <p>The hyperbolic analogue of \\(\\sin^2\\theta+\\cos^2\\theta=1\\) has a sign flip:</p>
+      <p>$$\\cosh^2x - \\sinh^2x = 1$$</p>
+      <div class="chalk">
+        <p>Prove that \\(\\cosh^2x-\\sinh^2x=1\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(\\cosh^2x-\\sinh^2x = \\left(\\dfrac{e^x+e^{-x}}{2}\\right)^2 - \\left(\\dfrac{e^x-e^{-x}}{2}\\right)^2\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(= \\dfrac{(e^{2x}+2+e^{-2x}) - (e^{2x}-2+e^{-2x})}{4} = \\dfrac{4}{4}\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(= 1\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">03</span> Derivatives</h2>
+      <p>Unlike ordinary trig, there's no repeating sign pattern:</p>
+      <p>$$\\frac{d}{dx}(\\sinh x) = \\cosh x \\qquad \\frac{d}{dx}(\\cosh x) = \\sinh x$$</p>
+      <div class="chalk">
+        <p>Differentiate \\(y=\\cosh(3x)\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>By the chain rule: \\(\\dfrac{dy}{dx} = 3\\sinh(3x)\\)</span></div>
+      </div>
+    `,
+    practice:[
+      {
+        q:"Evaluate \\(\\cosh(0)\\).",
+        steps:[
+          "\\(\\cosh0 = \\dfrac{e^0+e^0}{2} = \\dfrac{1+1}{2}\\)"
+        ],
+        final:"1"
+      },
+      {
+        q:"Show that \\(\\sinh(2x) = 2\\sinh x \\cosh x\\).",
+        steps:[
+          "\\(2\\sinh x\\cosh x = 2\\left(\\dfrac{e^x-e^{-x}}{2}\\right)\\left(\\dfrac{e^x+e^{-x}}{2}\\right) = \\dfrac{(e^x-e^{-x})(e^x+e^{-x})}{2}\\)",
+          "\\(= \\dfrac{e^{2x}-e^{-2x}}{2}\\), which is exactly the definition of \\(\\sinh(2x)\\)"
+        ],
+        final:"Identity confirmed"
+      },
+      {
+        q:"Differentiate \\(y=\\sinh(4x)\\).",
+        steps:[
+          "By the chain rule, \\(\\dfrac{dy}{dx} = 4\\cosh(4x)\\)"
+        ],
+        final:"dy/dx = 4cosh(4x)"
+      },
+      {
+        q:"Given \\(\\cosh x = 2\\) with \\(x>0\\), find \\(\\sinh x\\).",
+        steps:[
+          "\\(\\cosh^2x-\\sinh^2x=1 \\Rightarrow \\sinh^2x = 4-1 = 3\\)",
+          "Since \\(x>0\\), take the positive root."
+        ],
+        final:"sinh x = √3"
+      },
+    ]
+  },
+
+  "diff-eq": {
+    subjectKey:"further",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <text x="15" y="55" font-family="IBM Plex Mono" font-size="18" fill="#132821">dy</text>
+      <line x1="15" y1="60" x2="45" y2="60" stroke="#132821" stroke-width="2"/>
+      <text x="15" y="80" font-family="IBM Plex Mono" font-size="18" fill="#132821">dx</text>
+      <text x="55" y="68" font-family="IBM Plex Mono" font-size="22" fill="#3E8E7E">=</text>
+      <text x="75" y="68" font-family="IBM Plex Mono" font-size="18" fill="#3E8E7E">ky</text>
+    </svg>`,
+    title:"Differential Equations",
+    dek:"Equations built from rates of change, and how to solve the separable ones.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> Separable differential equations</h2>
+      <p>A first-order differential equation is <strong>separable</strong> if it can be rearranged so all the \\(y\\) terms are on one side and all the \\(x\\) terms are on the other. Once separated, integrate both sides independently.</p>
+      <div class="chalk">
+        <p>Solve \\(\\dfrac{dy}{dx} = 2xy\\), given \\(y=3\\) when \\(x=0\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>Separate: \\(\\dfrac{1}{y}\\,dy = 2x\\,dx\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>Integrate both sides: \\(\\ln|y| = x^2 + C \\Rightarrow y = Ae^{x^2}\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>Apply the condition: \\(3 = Ae^0 \\Rightarrow A=3\\), so \\(y=3e^{x^2}\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">02</span> General vs particular solutions</h2>
+      <p>Integrating gives a <strong>general solution</strong> containing an unknown constant. An initial condition (a known point on the curve) pins that constant down to give the <strong>particular solution</strong>.</p>
+
+      <h2 class="section-title"><span class="num">03</span> Growth and decay models</h2>
+      <p>An equation of the form \\(\\dfrac{dy}{dx}=ky\\) always solves to \\(y=Ae^{kx}\\) — this is the standard model for population growth, radioactive decay, and similar processes where the rate of change is proportional to the current amount.</p>
+    `,
+    practice:[
+      {
+        q:"Solve \\(\\dfrac{dy}{dx} = 3x^2\\), given \\(y=5\\) when \\(x=0\\).",
+        steps:[
+          "Integrate directly: \\(y = x^3 + C\\)",
+          "Apply the condition: \\(5 = 0 + C\\)"
+        ],
+        final:"y = x³ + 5"
+      },
+      {
+        q:"Solve \\(\\dfrac{dy}{dx} = \\dfrac{y}{x}\\) (\\(x>0\\)), given \\(y=2\\) when \\(x=1\\).",
+        steps:[
+          "Separate: \\(\\dfrac{1}{y}dy = \\dfrac{1}{x}dx\\)",
+          "Integrate: \\(\\ln|y| = \\ln|x|+C \\Rightarrow y=Ax\\)",
+          "Apply the condition: \\(2 = A(1)\\)"
+        ],
+        final:"y = 2x"
+      },
+      {
+        q:"A population P grows according to \\(\\dfrac{dP}{dt}=0.1P\\). If \\(P=200\\) at \\(t=0\\), find P in terms of t.",
+        steps:[
+          "Separate and integrate: \\(\\ln P = 0.1t + C \\Rightarrow P = Ae^{0.1t}\\)",
+          "Apply the condition: \\(200 = Ae^0 \\Rightarrow A=200\\)"
+        ],
+        final:"P = 200e^(0.1t)"
+      },
+      {
+        q:"Solve \\(\\dfrac{dy}{dx} = 6x^2y^2\\), given \\(y=1\\) when \\(x=0\\).",
+        steps:[
+          "Separate: \\(\\dfrac{1}{y^2}dy = 6x^2 dx\\)",
+          "Integrate: \\(-\\dfrac1y = 2x^3+C\\). Apply the condition: \\(-1 = 0+C \\Rightarrow C=-1\\)",
+          "So \\(-\\dfrac1y = 2x^3-1 \\Rightarrow \\dfrac1y = 1-2x^3\\)"
+        ],
+        final:"y = 1/(1 − 2x³)"
+      },
+    ]
+  },
+
+  "discrete-prob": {
+    subjectKey:"further",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="30" cy="55" r="8" fill="#132821"/>
+      <circle cx="60" cy="35" r="14" fill="#3E8E7E"/>
+      <circle cx="95" cy="60" r="10" fill="#132821"/>
+    </svg>`,
+    title:"Discrete Probability Distributions",
+    dek:"Expectation and variance for random variables that take a finite set of values.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> Probability distributions</h2>
+      <p>A discrete random variable \\(X\\) takes a set of specific values, each with its own probability. Every valid probability distribution must satisfy:</p>
+      <p>$$\\sum P(X=x) = 1$$</p>
+
+      <h2 class="section-title"><span class="num">02</span> Expectation</h2>
+      <p>The expectation (mean) of \\(X\\) is a weighted average of its possible values:</p>
+      <p>$$E(X) = \\sum x\\,P(X=x)$$</p>
+      <div class="chalk">
+        <p>\\(X\\) has \\(P(X{=}1)=0.2\\), \\(P(X{=}2)=0.5\\), \\(P(X{=}3)=0.3\\). Find \\(E(X)\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(E(X) = 1(0.2)+2(0.5)+3(0.3) = 0.2+1+0.9\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(= 2.1\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">03</span> Variance</h2>
+      <p>$$\\text{Var}(X) = E(X^2) - \\big[E(X)\\big]^2$$</p>
+      <div class="chalk">
+        <p>Find \\(\\text{Var}(X)\\) for the distribution above.</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(E(X^2) = 1^2(0.2)+2^2(0.5)+3^2(0.3) = 0.2+2+2.7 = 4.9\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(\\text{Var}(X) = 4.9 - 2.1^2 = 4.9-4.41\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(= 0.49\\)</span></div>
+      </div>
+    `,
+    practice:[
+      {
+        q:"A discrete random variable X has \\(P(X{=}0)=0.1\\), \\(P(X{=}1)=0.4\\), \\(P(X{=}2)=0.5\\). Find \\(E(X)\\).",
+        steps:[
+          "\\(E(X) = 0(0.1)+1(0.4)+2(0.5) = 0+0.4+1\\)"
+        ],
+        final:"1.4"
+      },
+      {
+        q:"For the distribution in the previous question, find \\(E(X^2)\\).",
+        steps:[
+          "\\(E(X^2) = 0^2(0.1)+1^2(0.4)+2^2(0.5) = 0+0.4+2\\)"
+        ],
+        final:"2.4"
+      },
+      {
+        q:"Using \\(E(X)=1.4\\) and \\(E(X^2)=2.4\\), find \\(\\text{Var}(X)\\).",
+        steps:[
+          "\\(\\text{Var}(X) = 2.4 - 1.4^2 = 2.4-1.96\\)"
+        ],
+        final:"0.44"
+      },
+      {
+        q:"A random variable X takes values 1, 2, 3, 4 with probabilities \\(k, 2k, 3k, 4k\\) respectively. Find \\(k\\).",
+        steps:[
+          "All probabilities must sum to 1: \\(k+2k+3k+4k = 10k = 1\\)"
+        ],
+        final:"k = 0.1"
+      },
+    ]
+  },
+
+  poisson: {
+    subjectKey:"further",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="10" y1="78" x2="115" y2="78" stroke="#cfc4a4" stroke-width="1"/>
+      <rect x="18" y="60" width="12" height="18" fill="#132821"/>
+      <rect x="38" y="42" width="12" height="36" fill="#3E8E7E"/>
+      <rect x="58" y="30" width="12" height="48" fill="#3E8E7E"/>
+      <rect x="78" y="46" width="12" height="32" fill="#132821"/>
+      <rect x="98" y="65" width="12" height="13" fill="#132821"/>
+    </svg>`,
+    title:"Poisson & Binomial",
+    dek:"Modelling the number of events occurring in a fixed interval of time or space.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> When to use the Poisson distribution</h2>
+      <p>A Poisson distribution, written \\(X \\sim \\text{Po}(\\lambda)\\), models the number of times a rare event happens in a fixed interval, when events occur independently, at a constant average rate \\(\\lambda\\), and cannot occur simultaneously.</p>
+      <p>$$P(X=r) = \\frac{e^{-\\lambda}\\lambda^r}{r!}$$</p>
+      <p>Its mean and variance are both equal to \\(\\lambda\\) — a distinctive feature worth checking data against.</p>
+      <div class="chalk">
+        <p>Calls arrive at a call centre at a rate of 3 per minute. Find \\(P(\\text{exactly 5 calls in a minute})\\).</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(X \\sim \\text{Po}(3)\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(P(X=5) = \\dfrac{e^{-3}3^5}{5!} = \\dfrac{e^{-3}(243)}{120}\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(\\approx 0.1008\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">02</span> Summing independent Poisson variables</h2>
+      <p>If \\(X\\sim\\text{Po}(\\lambda_1)\\) and \\(Y\\sim\\text{Po}(\\lambda_2)\\) are independent, their total is also Poisson:</p>
+      <p>$$X+Y \\sim \\text{Po}(\\lambda_1+\\lambda_2)$$</p>
+
+      <h2 class="section-title"><span class="num">03</span> Poisson as an approximation to Binomial</h2>
+      <p>When \\(n\\) is large and \\(p\\) is small, \\(B(n,p)\\) can be approximated by \\(\\text{Po}(np)\\) — much easier to compute, and accurate whenever the binomial's own mean stays roughly constant.</p>
+    `,
+    practice:[
+      {
+        q:"\\(X \\sim \\text{Po}(4)\\). Find \\(P(X=2)\\).",
+        steps:[
+          "\\(P(X=2) = \\dfrac{e^{-4}4^2}{2!} = \\dfrac{16e^{-4}}{2} = 8e^{-4}\\)"
+        ],
+        final:"≈0.1465"
+      },
+      {
+        q:"The number of flaws in a metre of fabric follows \\(\\text{Po}(0.5)\\). Find the probability of exactly 1 flaw.",
+        steps:[
+          "\\(P(X=1) = \\dfrac{e^{-0.5}(0.5)^1}{1!} = 0.5e^{-0.5}\\)"
+        ],
+        final:"≈0.3033"
+      },
+      {
+        q:"\\(X\\sim\\text{Po}(3)\\) and \\(Y\\sim\\text{Po}(4)\\) are independent. State the distribution of \\(X+Y\\) and find \\(P(X+Y=0)\\).",
+        steps:[
+          "\\(X+Y \\sim \\text{Po}(3+4) = \\text{Po}(7)\\)",
+          "\\(P(X+Y=0) = e^{-7}\\)"
+        ],
+        final:"X+Y ~ Po(7); P(X+Y=0) ≈ 0.000912"
+      },
+      {
+        q:"A rare event occurs with probability 0.01 in each of 200 independent trials. Use a Poisson approximation to estimate \\(P(\\text{no events})\\).",
+        steps:[
+          "\\(\\lambda = np = 200(0.01) = 2\\)",
+          "\\(P(X=0) = e^{-2}\\)"
+        ],
+        final:"≈0.1353"
+      },
+    ]
+  },
+
+  momentum: {
+    subjectKey:"further",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="30" cy="45" r="12" fill="#132821"/>
+      <circle cx="90" cy="45" r="9" fill="#3E8E7E"/>
+      <path d="M45 45 L58 45" stroke="#132821" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M58 45 L50 40 M58 45 L50 50" stroke="#132821" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    </svg>`,
+    title:"Momentum & Impulse",
+    dek:"How motion transfers between colliding objects, and conservation of momentum.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> Momentum</h2>
+      <p>Momentum is the product of mass and velocity, and — like velocity — it's a vector:</p>
+      <p>$$p = mv$$</p>
+
+      <h2 class="section-title"><span class="num">02</span> Impulse</h2>
+      <p>Impulse is the change in momentum a force produces, equal to force multiplied by the time it acts:</p>
+      <p>$$\\text{Impulse} = Ft = mv - mu$$</p>
+      <div class="chalk">
+        <p>A ball of mass 0.5 kg travelling at 6 m/s is brought to rest by a force acting for 0.2 s. Find the impulse and the average force.</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>Impulse \\(= m(v-u) = 0.5(0-6) = -3\\ \\text{Ns}\\) (magnitude 3 Ns)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(F = \\dfrac{\\text{Impulse}}{t} = \\dfrac{3}{0.2} = 15\\ \\text N\\)</span></div>
+      </div>
+
+      <h2 class="section-title"><span class="num">03</span> Conservation of momentum</h2>
+      <p>In any collision with no external forces, total momentum before equals total momentum after:</p>
+      <p>$$m_1u_1 + m_2u_2 = m_1v_1 + m_2v_2$$</p>
+      <div class="chalk">
+        <p>A 2 kg ball moving at 5 m/s collides with a stationary 3 kg ball, and they coalesce. Find their common velocity.</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>Momentum before: \\(2(5)+3(0) = 10\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\((2+3)v = 10 \\Rightarrow v = 2\\ \\text{m/s}\\)</span></div>
+      </div>
+    `,
+    practice:[
+      {
+        q:"A particle of mass 4 kg has velocity 3 m/s. Find its momentum.",
+        steps:[
+          "\\(p = mv = 4\\times3\\)"
+        ],
+        final:"12 kg m/s"
+      },
+      {
+        q:"A ball of mass 0.2 kg hits a wall at 8 m/s and rebounds at 5 m/s. Find the impulse exerted by the wall (taking the direction toward the wall as positive).",
+        steps:[
+          "\\(\\text{Impulse} = m(v-u) = 0.2(-5-8) = 0.2(-13)\\)"
+        ],
+        final:"−2.6 Ns (magnitude 2.6 Ns, away from the wall)"
+      },
+      {
+        q:"Particles of mass 3 kg and 2 kg move toward each other at 4 m/s and 6 m/s respectively and coalesce. Find their common velocity (taking the 3 kg particle's direction as positive).",
+        steps:[
+          "Momentum before: \\(3(4)+2(-6) = 12-12 = 0\\)",
+          "\\((3+2)v = 0\\)"
+        ],
+        final:"0 m/s"
+      },
+      {
+        q:"A force of 10 N acts on a 2 kg mass at rest for 5 seconds. Find the final velocity.",
+        steps:[
+          "Impulse \\(= Ft = 10(5) = 50\\ \\text{Ns}\\), equal to the change in momentum",
+          "\\(mv - 0 = 50 \\Rightarrow v = 50/2\\)"
+        ],
+        final:"25 m/s"
+      },
+    ]
+  },
+
+  circular: {
+    subjectKey:"further",
+    motif:`<svg width="120" height="90" viewBox="0 0 120 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="60" cy="45" r="28" stroke="#cfc4a4" stroke-width="1" fill="none" stroke-dasharray="3 2"/>
+      <circle cx="88" cy="45" r="4" fill="#3E8E7E"/>
+      <path d="M88 45 A28 28 0 0 1 60 73" stroke="#132821" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M60 73 L65 65 M60 73 L68 71" stroke="#132821" stroke-width="2" fill="none" stroke-linecap="round"/>
+    </svg>`,
+    title:"Circular Motion",
+    dek:"Angular speed, and the force needed to keep an object moving in a circle.",
+    body:`
+      <h2 class="section-title"><span class="num">01</span> Angular speed</h2>
+      <p>Angular speed \\(\\omega\\) measures how fast an angle is swept out, in radians per second. It relates to ordinary (linear) speed by:</p>
+      <p>$$v = r\\omega$$</p>
+
+      <h2 class="section-title"><span class="num">02</span> Centripetal acceleration and force</h2>
+      <p>An object moving in a circle at constant speed is still accelerating — its direction keeps changing. This acceleration always points toward the centre:</p>
+      <p>$$a = \\frac{v^2}{r} = \\omega^2 r \\qquad F = \\frac{mv^2}{r} = m\\omega^2 r$$</p>
+      <div class="chalk">
+        <p>A particle moves in a circle of radius 2 m with angular speed 3 rad/s. Find its linear speed and centripetal acceleration.</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(v = r\\omega = 2(3) = 6\\ \\text{m/s}\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(a = \\omega^2 r = 9(2) = 18\\ \\text{m/s}^2\\)</span></div>
+      </div>
+      <div class="chalk">
+        <p>A 0.5 kg mass moves in a horizontal circle of radius 1.5 m at 4 m/s. Find the centripetal force required.</p>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(F = \\dfrac{mv^2}{r} = \\dfrac{0.5(16)}{1.5} = \\dfrac{8}{1.5}\\)</span></div>
+        <div class="chalk-step"><span class="arrow">→</span><span>\\(\\approx 5.33\\ \\text N\\)</span></div>
+      </div>
+    `,
+    practice:[
+      {
+        q:"A particle moves in a circle of radius 3 m with angular speed 2 rad/s. Find its linear speed.",
+        steps:[
+          "\\(v = r\\omega = 3\\times2\\)"
+        ],
+        final:"6 m/s"
+      },
+      {
+        q:"Find the centripetal acceleration of a particle moving in a circle of radius 4 m at angular speed 5 rad/s.",
+        steps:[
+          "\\(a = \\omega^2 r = 25\\times4\\)"
+        ],
+        final:"100 m/s²"
+      },
+      {
+        q:"A 2 kg mass moves in a horizontal circle of radius 0.8 m at 3 m/s. Find the centripetal force.",
+        steps:[
+          "\\(F = \\dfrac{mv^2}{r} = \\dfrac{2(9)}{0.8} = \\dfrac{18}{0.8}\\)"
+        ],
+        final:"22.5 N"
+      },
+      {
+        q:"A particle travels in a circle of radius 5 m, completing one revolution every 4 seconds. Find its angular speed and linear speed.",
+        steps:[
+          "\\(\\omega = \\dfrac{2\\pi}{T} = \\dfrac{2\\pi}{4} = \\dfrac{\\pi}{2} \\approx 1.571\\ \\text{rad/s}\\)",
+          "\\(v = r\\omega = 5(1.571)\\)"
+        ],
+        final:"ω ≈ 1.571 rad/s, v ≈ 7.85 m/s"
       },
     ]
   }
